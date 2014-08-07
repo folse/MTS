@@ -1,0 +1,4 @@
+from django.db import models
+
+class Place(models.Model):
+    name = models.CharField(max_length=32, db_index=True)
