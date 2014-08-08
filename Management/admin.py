@@ -1,16 +1,12 @@
 from django.contrib import admin
 from Management import models
-from django.http import HttpResponseRedirect
 import urllib
 
 
-def export_selected_objects(modeladmin, request, queryset):
-	return HttpResponseRedirect("/path/")
+class PlaceAdmin(admin.ModelAdmin):
 
-class Place(models.Place):
-	def save_related(self, request, obj, form, change):
-		return HttpResponseRedirect("/path/")
+	def save_model(self, request, obj, form, change):
+		urllib.urlopen('http://baidu.com').read()
 
-admin.site.register(models.Place)
 
-admin.site.add_action(export_selected_objects)
+admin.site.register(models.Place,PlaceAdmin)
