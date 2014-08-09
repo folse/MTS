@@ -6,6 +6,8 @@ class Place(models.Model):
     latitude = models.FloatField(max_length=32)
     longitude = models.FloatField(max_length=32)
     phone = models.CharField(max_length=32)
-    news = models.CharField(max_length=512)
-    open_hours = models.CharField(max_length=128)
+    open_hour = models.CharField(max_length=128)
+    category = models.CharField(max_length=512)
+    news = models.TextField(max_length=512)
+    description = models.TextField(max_length=512)
 
