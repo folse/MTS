@@ -13,10 +13,14 @@ class PlaceAdmin(admin.ModelAdmin):
 		register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
 		place = Place()
 		place.name = obj.name
-		place.name = obj.name
-		place.name = obj.name
-		place.name = obj.name
-		place.name = obj.name
+		place.photo = obj.photo
+		place.phone = obj.phone
+		place.category = obj.category
+		place.open_hour = obj.open_hour
+		place.latitude = obj.latitude
+		place.longitude = obj.longitude
+		place.news = obj.news
+		place.description = obj.description
 		place.save()
 
 admin.site.register(models.Place,PlaceAdmin)
