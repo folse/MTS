@@ -1,5 +1,5 @@
 from django.contrib import admin
-from Management import models
+from management import models
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, Pointer, Relation,GeoPoint
 

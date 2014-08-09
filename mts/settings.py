@@ -1,5 +1,5 @@
 """
-Django settings for adminproject project.
+Django settings for mts project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
@@ -17,16 +17,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p$s7fr=ane-5%5rxqgchwn79jqd(xpr#0@l93628)eu+-0ucd8'
+SECRET_KEY = 'dlmb#aj^cu-*$3^xntf1447xqex)x$ogp74wfd-vh4p65!07m='
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
+
 ALLOWED_HOSTS = []
 
-TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Application definition
 
@@ -37,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Management',
+    'management',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,9 +50,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'adminproject.urls'
+ROOT_URLCONF = 'mts.urls'
 
-WSGI_APPLICATION = 'adminproject.wsgi.application'
+WSGI_APPLICATION = 'mts.wsgi.application'
 
 
 # Database
