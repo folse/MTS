@@ -1,12 +1,12 @@
 from django.contrib import admin
 from management import models
 from parse_rest.connection import register
-from parse_rest.datatypes import Object, Pointer, Relation,GeoPoint
+from parse_rest.datatypes import Object, GeoPoint
 
 class Photo(Object):
 	pass
 
-class Category(Object):
+class Category_Place(Object):
 	pass
 
 class Place(Object):
@@ -19,11 +19,16 @@ class PlaceAdmin(admin.ModelAdmin):
 		photo = Photo()
 		photo.url = obj.photo
 		photo.save()
-		print photo.objectId
 
-		category = Category()
-		category.name = obj.category
-		category.save()
+
+		category = Category_Place.Query.filter(name=obj.category)[0]
+		if category:
+			pass
+		else:
+			category = Category_Place()
+			category.name = obj.category
+			category.save()
+
 
 		place = Place()
 		place.name = obj.name
@@ -31,9 +36,15 @@ class PlaceAdmin(admin.ModelAdmin):
 		place.news = obj.news
 		place.open_hour = obj.open_hour
 		place.description = obj.description
-		#place.addRelation('photos', 'Place', photo.objectId)
-		place.category = Pointer(category)
 		place.location = GeoPoint(latitude = obj.latitude, longitude = obj.longitude)
 		place.save()
+
+		photoIdList = [photo.objectId]
+		place.addRelation('photos', 'Photo', photoIdList)
+
+		categoryIdList = [category.objectId]
+		place.addRelation('category', 'Category_Place', categoryIdList)
+		
+		
 
 admin.site.register(models.Place,PlaceAdmin)
