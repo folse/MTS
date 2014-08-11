@@ -49,7 +49,6 @@ class PlaceCategoryAdmin(admin.ModelAdmin):
 	def get_username(self):
 		return 'abc'
 
-		
 	def save_model(self, request, obj, form, change):
 		categoryList = Category_Place.Query.filter(name=obj.name)
 		if categoryList:
@@ -59,6 +58,6 @@ class PlaceCategoryAdmin(admin.ModelAdmin):
 			category.name = obj.name
 			category.save()
 
-admin.site.register(models.Place_Category,PlaceCategoryAdmin)
-admin.site.register(models.Place,PlaceAdmin)
+#admin.site.register(models.Place_Category,PlaceCategoryAdmin)
+#admin.site.register(models.Place,PlaceAdmin)
 
