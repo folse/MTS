@@ -20,15 +20,13 @@ class PlaceAdmin(admin.ModelAdmin):
 		photo.url = obj.photo
 		photo.save()
 
-
-		category = Category_Place.Query.filter(name=obj.category)[0]
+		category = Category_Place.Query.all()
 		if category:
 			pass
 		else:
 			category = Category_Place()
 			category.name = obj.category
 			category.save()
-
 
 		place = Place()
 		place.name = obj.name
@@ -44,7 +42,23 @@ class PlaceAdmin(admin.ModelAdmin):
 
 		categoryIdList = [category.objectId]
 		place.addRelation('category', 'Category_Place', categoryIdList)
-		
-		
 
+class PlaceCategoryAdmin(admin.ModelAdmin):
+
+	list_display = ('get_username',)
+	def get_username(self):
+		return 'abc'
+
+		
+	def save_model(self, request, obj, form, change):
+		categoryList = Category_Place.Query.filter(name=obj.name)
+		if categoryList:
+			print 'already have this category'
+		else:
+			category = Category_Place()
+			category.name = obj.name
+			category.save()
+
+admin.site.register(models.Place_Category,PlaceCategoryAdmin)
 admin.site.register(models.Place,PlaceAdmin)
+
