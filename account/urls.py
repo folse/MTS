@@ -4,6 +4,7 @@ from account import views
 
 urlpatterns = patterns('',
     (r'^login/$', views.login),
-    (r'^register/$', 'account.views.register'),
-    (r'^logout/$', 'django.contrib.auth.views.logout',{'next_page':'/'}),
+    (r'^register/$', views.register),
+    (r'^profile/$', 'account.views.profile'),
+    (r'^logout/$', 'django.contrib.auth.views.logout',{'next_page':'/account/login'}),
 )

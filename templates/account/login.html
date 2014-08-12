@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block head %}Login{% endblock %}
+{% block content %}
+{% if form.errors %}
+<ul class="errorlist"><li>Username or password were incorrect</li></ul>
+{% endif %}
+<form method="post" action="./">
+	<table class="noframe">
+    {% if next != '' %}
+    <tr>
+    <td colspan="2" align="center">Please login to
+        <a href="{{next}}">continue</a>
+    </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    {% endif %}
+    <tr>
+    	<td align="right">Username:</td>
+        <td>{{form.username}}</td>
+    </tr>
+    <tr>
+    	<td align="right">Password:</td>
+        <td>{{form.password}}</td>
+    </tr>
+    <tr>
+    	<td colspan="2" align="center">
+        	<input type="submit" value="Login"/>
+        </td>
+    </tr>
+    <tr>
+    	<td colspan="2" align="center">
+    		<p>&nbsp;</p>
+    		<a href="/accounts/password/reset/">Forgot password</a>
+    	</td>
+    <input type="hidden" name="next" value="{{next}}">
+    </tr>
+    </table>
+</form>
+{% endblock %}
+        

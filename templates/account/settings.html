@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Settings{% endblock %}
+{% block head %}Settings{% endblock %}
+{% block content %}
+<form action="/app/add" method="post">
+  <table>
+  	<tr>
+      <td><b>Change password</b></td>
+      <p>&nbsp;</p>
+    </tr>	
+    {% for field in PasswordForm %}
+    <tr>
+      <td>{{field.label_tag}}:</td> 
+      <td>{{field}} <span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
+	  <td>{{ info }}</td>
+    </tr>
+    {% endfor %}
+    <tr>
+      <td colspan="2" align="right"><input type="submit" value="保存" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
