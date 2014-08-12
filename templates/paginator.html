@@ -1,0 +1,22 @@
+{% if is_paginated %}
+	<table class="noframe">
+    	<tr>
+        	{% if has_previous %}
+            	<td><a href="?page={{previous}}">&lt;&lt;上一页&nbsp;</a></td>
+            {% endif %}
+            {% if has_next %}
+				<td><a href="?page={{next}}">&nbsp;下一页&gt;&gt;</a></td>
+            {% endif %}
+        </tr>
+        <tr>
+            <td align="center">{{page}} / {{pages}}</td>
+            <form action="/app/list" method="get">
+            	<td>To Page</td>
+                <td><input name="page" type="text" size="2"></td>
+                <td><input type="submit" value="Go"></td>
+            </form>
+        </tr>
+    </table>
+{% endif %}
+                
+                  

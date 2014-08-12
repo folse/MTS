@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}用户登录{% endblock %}
+{% block head %}用户登录{% endblock %}
+{% block content %}
+{% if form.has_errors %}
+<ul class="errorlist"><li>用户名或密码错误</li></ul>
+{% endif %}
+<form method="post" action="./">
+	<table class="noframe">
+    {% if next != '' %}
+    <tr>
+    <td colspan="2" align="center">请登录之后继续之前的
+        <a href="{{next}}">操作</a>
+    </td>
+    </tr>
+    <tr></tr>
+    <tr></tr>
+    {% endif %}
+    <tr>
+    	<td align="right">用户名:</td>
+        <td>{{form.username}}</td>
+    </tr>
+    <tr>
+    	<td align="right">密  码:</td>
+        <td>{{form.password}}</td>
+		<td><a href="/accounts/password/reset/">密码忘了？</a>
+		<input type="hidden" name="next" value="{{next}}">
+		</td>
+    </tr>
+    <tr>
+    	<td colspan="2" align="right">
+        	<input type="submit" value="登录"/>
+        </td>
+    </tr>
+    </table>
+</form>
+{% endblock %}
+        
