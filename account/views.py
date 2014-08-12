@@ -68,12 +68,18 @@ def register(request):
             from django.contrib.auth import authenticate, login
             #login() saves the user's ID in the session
             user = authenticate(username=data['username'], password=data['password'])
-            login(request, user)           
+            login(request, user) 
+            #Parse Signup
+            parse_signup(data)
             return HttpResponseRedirect('/website/list')
         else:
             return render_to_response('account/register.html', {'regForm':regForm},
                 context_instance=RequestContext(request), mimetype="application/xhtml+xml")
-            
+   
+def parse_signup(data):
+    from parse_rest.user import User
+    u = User.signup(data['username'], data['password'], email=data['email'])
+
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def profile(request):
     if request.method == "GET":
