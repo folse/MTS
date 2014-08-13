@@ -11,9 +11,9 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 
-
 from forms import Add_Place_Form
-from decimal import Decimal
+
+from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
@@ -55,14 +55,19 @@ def add_place(request):
         # photoIdList = [photo.objectId]
         # place.addRelation('photos', 'Photo', photoIdList)
 
-        category = Category_Place.Query.filter(name=data.get('category'))
+        user = User.Query.get(objectId="pIO94IqIPN")
+        if user:
+            place.addRelation('user', '_User', [user.objectId])
+
+        category = Category_Place.Query.get(objectId=data.get('category'))
         if category:
-        	place.addRelation('category', 'Category_Place', [category[0].objectId])
+        	place.addRelation('category', 'Category_Place', [data.get('category')])
         else:
-        	category = Category_Place()
-        	category.name = data.get('category')
-        	category.save()
-        	place.addRelation('category', 'Category_Place', [category.objectId])
+            pass
+        	# category = Category_Place()
+        	# category.name = data.get('category')
+        	# category.save()
+        	# place.addRelation('category', 'Category_Place', [category.objectId])
         return HttpResponseRedirect('/website/list')
 
 

@@ -62,6 +62,10 @@ def register(request):
         regForm = RegisterForm(request.POST)
         if regForm.is_valid():
             data = regForm.cleaned_data
+            
+            #Parse Signup
+            userObjectId = parse_signup(data)
+
             user = User.objects.create_user(data['username'], data['email'], data['password'])
             user.email, user.is_staff, user.is_active, user.is_superuser = data['email'], True, True, False
             user.save()
@@ -69,8 +73,6 @@ def register(request):
             #login() saves the user's ID in the session
             user = authenticate(username=data['username'], password=data['password'])
             login(request, user) 
-            #Parse Signup
-            parse_signup(data)
             return HttpResponseRedirect('/website/list')
         else:
             return render_to_response('account/register.html', {'regForm':regForm},
@@ -79,6 +81,7 @@ def register(request):
 def parse_signup(data):
     from parse_rest.user import User
     u = User.signup(data['username'], data['password'], email=data['email'])
+    return u.objectId
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def profile(request):
