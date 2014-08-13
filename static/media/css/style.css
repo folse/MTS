@@ -1,0 +1,9 @@
+@charset "utf-8";
+/* CSS Document */
+body {background-color:white;}
+a:link {text-decoration:none}
+div.nav{float:center}
+/*table.msglist{border:0 solid black;border-collapse:collapse}
+table.msglist th,table.msglist td{border:1 solid black}
+input{display:block; border:solid black}
+table.noframe, table.noframe td{border:0}*/

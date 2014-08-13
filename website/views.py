@@ -36,7 +36,7 @@ def list(request):
 def add_place(request):
     if request.method == "GET":
         return render_to_response('website/place/place_add.html', {'Add_Place_Form':Add_Place_Form()},
-        context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+        context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
     	data = request.POST
         form = Add_Place_Form(data)
@@ -49,11 +49,11 @@ def add_place(request):
         place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
-        photo = Photo()
-        photo.url = data.get('photo')
-        photo.save()
-        photoIdList = [photo.objectId]
-        place.addRelation('photos', 'Photo', photoIdList)
+        # photo = Photo()
+        # photo.url = data.get('photo')
+        # photo.save()
+        # photoIdList = [photo.objectId]
+        # place.addRelation('photos', 'Photo', photoIdList)
 
         category = Category_Place.Query.filter(name=data.get('category'))
         if category:
@@ -64,3 +64,5 @@ def add_place(request):
         	category.save()
         	place.addRelation('category', 'Category_Place', [category.objectId])
         return HttpResponseRedirect('/website/list')
+
+

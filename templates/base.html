@@ -3,7 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>MTS | {% block title %}{% endblock %}</title>
-<link rel="stylesheet" href="../templates/media/css/style.css" type="text/css" />
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
 </head>
 <body>
 <div class="nav">
