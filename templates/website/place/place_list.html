@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}应用列表{% endblock %}
+{% block head %}应用列表{% endblock %}
+{% block content %}
+<table width="960">
+{% if object_list %}
+    <tr align="center">
+        <th>应用名称</th>
+        <th>系统平台</th>
+        <th>应用状态</th>
+        <th>今日展示</th>
+        <th>今日点击</th>
+        <th>今日收入</th>
+        <th>操作设置</th>
+    </tr>
+    {% for app in object_list %}
+        <tr align="center">
+            <td><a href="detail/{{app.id}}">{{app.name}}</a></td>
+            <td>{{app.platform}}</td>
+            <td>待审核</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td><a href="report/{{app.id}}">统计</a> / <a href="edit/{{app.id}}">编辑</a></td>
+        </tr>
+        <p></p>
+    {% endfor %}
+{% else %}
+	<tr align="center"><td colspan="8">No Apps</td></tr>
+{% endif %}
+<tr align="right"> 
+	<td colspan="8">
+    <p>&nbsp;</p>
+    {% include 'paginator.html' %}
+	</td>
+</tr> 
+</table>
+
+{% endblock %}
+        

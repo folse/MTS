@@ -3,5 +3,6 @@ from django.conf.urls import patterns, url
 from website import views
 
 urlpatterns = patterns('',
-    url(r'^$', views.list)
+    (r'^$', views.list),
+    (r'^add/$', views.add_place),
 )

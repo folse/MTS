@@ -10,8 +10,9 @@ class Category_Place(Object):
 	pass
 
 class Place(Object):
-	register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
-	print 'parse register'
+	#register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
+	#print 'parse register'
+	pass
 
 class PlaceAdmin(admin.ModelAdmin):
 
@@ -20,7 +21,7 @@ class PlaceAdmin(admin.ModelAdmin):
 		photo.url = obj.photo
 		photo.save()
 
-		category = Category_Place.Query.all()
+		category = Category_Place.Query.filter(name=obj.category)[0]
 		if category:
 			pass
 		else:

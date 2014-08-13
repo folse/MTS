@@ -88,13 +88,6 @@ class PasswordForm(forms.Form):
 			raise forms.ValidationError(_('Twice input is inconsistent'))
 		return self.data.get('newpassword')
 	
-class PayAccountForm(forms.Form):
-	realname = forms.CharField(max_length=32, label=_('真实姓名'), required=True, help_text=_('*'))
-	identitycard = forms.CharField(max_length=32, label=_('身份证号'), required=True, help_text=_('*'))
-	bank = forms.CharField(max_length=32, label=_('开户银行名称'), required=True, help_text=_('*'))
-	payname = forms.CharField(max_length=32, label=_('银行帐号姓名'), required=True, help_text=_('*'))
-	payaccount = forms.CharField(max_length=32, label=_('银行帐号'), required=True, help_text=_('*'))
-	
 
 
 
