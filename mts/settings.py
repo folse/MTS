@@ -26,13 +26,18 @@ TEMPLATE_DEBUG = True
 
 TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
+# Folse Custom Define
+
 ALLOWED_HOSTS = ['*']
 
+AUTH_PROFILE_MODULE = 'account.User_Profile'
+
+LOGIN_URL = '/account/login'
 
 # Application definition
 
 INSTALLED_APPS = (
-    #'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

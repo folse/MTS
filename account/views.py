@@ -11,6 +11,7 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django import forms
+from models import User_Profile
 
 from forms import RegisterForm, PasswordForm
 import re
@@ -68,6 +69,9 @@ def register(request):
 
             user = User.objects.create_user(data['username'], data['email'], data['password'])
             user.email, user.is_staff, user.is_active, user.is_superuser = data['email'], True, True, False
+            user_profile = User_Profile(user=user)
+            user_profile.objectId, user_profile.description, user_profile.userType = userObjectId, '', 1 
+            user_profile.save()
             user.save()
             from django.contrib.auth import authenticate, login
             #login() saves the user's ID in the session

@@ -29,15 +29,13 @@ class Category_Place(Object):
 class Place(Object):
 	register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
 	print 'parse register'
-        
-@user_passes_test(lambda u: u.is_authenticated(), login_url='/accounts/login')
-def place_list(request):
-    if request.method == "GET":
-        return ListView.as_view(request,
-                                       queryset=Place.Query.all(),
-                                       paginate_by=ITEMS_PER_PAGE,
-                                       template_name='website/place/place_list.html',
-                                       )
+
+class PlaceListView(ListView):
+    template_name = 'website/place/place_list.html'
+    context_object_name = 'object_list'
+ 
+    def get_queryset(self):
+        return Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId))
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_add(request):
@@ -62,7 +60,7 @@ def place_add(request):
         # photoIdList = [photo.objectId]
         # place.addRelation('photos', 'Photo', photoIdList)
 
-        user = User.Query.get(objectId="pIO94IqIPN")
+        user = User.Query.get(objectId=request.user.user_profile.objectId)
         if user:
             place.addRelation('user', '_User', [user.objectId])
 
@@ -75,6 +73,6 @@ def place_add(request):
         	# category.name = data.get('category')
         	# category.save()
         	# place.addRelation('category', 'Category_Place', [category.objectId])
-        return HttpResponseRedirect('/website/list')
+        return HttpResponseRedirect('/website/success')
 
 
