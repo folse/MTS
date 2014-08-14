@@ -10,12 +10,15 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
+from django.views.generic.list import ListView
 
 from forms import Add_Place_Form
 
 from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
+
+ITEMS_PER_PAGE = 10
 
 class Photo(Object):
 	pass
@@ -27,13 +30,17 @@ class Place(Object):
 	register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
 	print 'parse register'
         
-@user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
-def list(request):
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/accounts/login')
+def place_list(request):
     if request.method == "GET":
-        return HttpResponseRedirect('/website/list')
+        return ListView.as_view(request,
+                                       queryset=Place.Query.all(),
+                                       paginate_by=ITEMS_PER_PAGE,
+                                       template_name='website/place/place_list.html',
+                                       )
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
-def add_place(request):
+def place_add(request):
     if request.method == "GET":
         return render_to_response('website/place/place_add.html', {'Add_Place_Form':Add_Place_Form()},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
