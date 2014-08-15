@@ -20,11 +20,15 @@ from parse_rest.datatypes import Object, GeoPoint
 
 ITEMS_PER_PAGE = 10
 
+
 class Photo(Object):
 	pass
 
 class Category_Place(Object):
 	pass
+
+class Relation(Object):
+    pass
 
 class Place(Object):
 	register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
@@ -32,10 +36,19 @@ class Place(Object):
 
 class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
-    context_object_name = 'object_list'
- 
     def get_queryset(self):
-        return Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId))
+        places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId))
+        print Relation(places[0].category)
+
+        return places
+
+
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
+def place_edit(request):
+    if request.method == "GET":
+        return render_to_response('website/place/place_edit.html', {'Add_Place_Form':Add_Place_Form()},
+        context_instance=RequestContext(request), content_type="application/xhtml+xml")
+        
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_add(request):
@@ -74,5 +87,4 @@ def place_add(request):
         	# category.save()
         	# place.addRelation('category', 'Category_Place', [category.objectId])
         return HttpResponseRedirect('/website/success')
-
 
