@@ -60,7 +60,7 @@ app.post('/downtoken', function(req, res) {
 });
 
 app.get('/', function(req, res) {
-    res.render('index.html', {
+    res.render('place_add.html', {
         domain: config.Domain,
         uptoken_url: config.Uptoken_Url
     });

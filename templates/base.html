@@ -2,12 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>MTS | {% block title %}{% endblock %}</title>
+<title>{% block title %}{% endblock %}</title>
 {% load staticfiles %}
+<link rel="shortcut icon" href="{% static "media/image/favicon.ico" %}" />
 <link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/css/upload_photo/main.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/css/upload_photo/highlight.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/script/bootstrap/css/bootstrap.css" %}" type="text/css" />
 </head>
 <body>
-<div class="nav">
+<!-- <div class="nav">
 	<a href="/">Home</a> |
     <a href="/website">My Shop</a> |
     <a href="/website/add">Add Shop</a> |
@@ -20,7 +24,7 @@
     <a href="/account/register/">Sign up</a>
   {% endif %}
     | <a href="/admin/">Admin</a>
-</div>
+</div> -->
 <h4>{% block head %}{% endblock %}</h4>
 {% block content %}{% endblock %}
 </body>

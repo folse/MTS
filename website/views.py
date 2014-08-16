@@ -18,9 +18,6 @@ from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
-ITEMS_PER_PAGE = 10
-
-
 class Photo(Object):
 	pass
 
@@ -38,10 +35,8 @@ class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
     def get_queryset(self):
         places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId))
-        print Relation(places[0].category)
-
         return places
-
+        
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_edit(request):
@@ -53,7 +48,7 @@ def place_edit(request):
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_add(request):
     if request.method == "GET":
-        return render_to_response('website/place/place_add.html', {'Add_Place_Form':Add_Place_Form()},
+        return render_to_response('website/upload_photo/views/place_add.html', {'Add_Place_Form':Add_Place_Form()},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
     	data = request.POST
