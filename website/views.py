@@ -28,8 +28,9 @@ class Relation(Object):
     pass
 
 class Place(Object):
-	register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
-	print 'parse register'
+	#register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
+	#print 'parse register'
+    pass
 
 class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
@@ -55,8 +56,9 @@ def place_add(request):
         form = Add_Place_Form(data)
         place = Place()
         place.name = data.get('name')
-        place.phone = data.get('phone')
         place.news = data.get('news')
+        place.phone = data.get('phone')
+        place.address = data.get('address')
         place.open_hour = data.get('open_hour')
         place.description = data.get('description')
         place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
