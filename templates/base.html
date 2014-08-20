@@ -4,14 +4,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{% block title %}{% endblock %}</title>
 {% load staticfiles %}
-<link rel="shortcut icon" href="{% static "media/image/favicon.ico" %}" />
 <link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
-<link rel="stylesheet" href="{% static "media/css/upload_photo/main.css" %}" type="text/css" />
-<link rel="stylesheet" href="{% static "media/css/upload_photo/highlight.css" %}" type="text/css" />
-<link rel="stylesheet" href="{% static "media/script/bootstrap/css/bootstrap.css" %}" type="text/css" />
+
+<!-- Add Bootstrap -->
+<link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/css/bootstrap.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/css/bootstrap-responsive.css" %}" type="text/css" />
+<link rel="stylesheet" href="{% static "media/css/docs.css" %}" type="text/css" />
+<link rel="shortcut icon" href="{% static "media/img/favicon.ico" %}" />
+<!-- <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+<link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"> -->
 </head>
 <body>
-<!-- <div class="nav">
+<div class="nav">
 	<a href="/">Home</a> |
     <a href="/website">My Shop</a> |
     <a href="/website/add">Add Shop</a> |
@@ -24,7 +31,7 @@
     <a href="/account/register/">Sign up</a>
   {% endif %}
     | <a href="/admin/">Admin</a>
-</div> -->
+</div>
 <h4>{% block head %}{% endblock %}</h4>
 {% block content %}{% endblock %}
 </body>

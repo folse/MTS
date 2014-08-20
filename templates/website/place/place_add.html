@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block title %}{% endblock %}
+{% block head %}{% endblock %}
+{% block content %}
+{% load staticfiles %}
+<div class="container">
+  <div class="row-fluid">
+    <div class="span12">
+      <div class="page-header">
+        <div class="row-fluid">
+          <div class="span12">
+            <h1> Add Shop</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row-fluid contact">
+    <div class="span6">
+      <div class="wpcf7" id="wpcf7-f75-t1-o1">
+          <div id="output" class="alert"> </div>
+          <div class="form-meta clearfix">
+            <div class="formcol">
+            <form action="/website/add/" method="post">
+            <table>
+                
+                  {% for field in Add_Place_Form %}
+                    <tr>
+                      <td><label for="fname">{{field.label_tag}}</label></td>
+                    </tr>
+                    <tr>
+                      <td>{{field}} </td>
+                      <td>&nbsp; &nbsp; &nbsp; &nbsp;  </td>
+                      <td><span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
+                      <td>{{ info }}</td>
+                    </tr>
+                  {% endfor %}
+                  <p>&nbsp;</p>
+                  <p>&nbsp;</p>
+                  <input type="submit" value="Submit" class="btn btn-success" />
+
+              </table>
+            </form>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

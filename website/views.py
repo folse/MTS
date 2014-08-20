@@ -49,7 +49,7 @@ def place_edit(request):
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_add(request):
     if request.method == "GET":
-        return render_to_response('website/upload_photo/views/place_add.html', {'Add_Place_Form':Add_Place_Form()},
+        return render_to_response('website/place/place_add.html', {'Add_Place_Form':Add_Place_Form()},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
     	data = request.POST
