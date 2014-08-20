@@ -4,7 +4,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>{% block title %}{% endblock %}</title>
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
+
+<!-- Add Webuploader -->
+<link rel="stylesheet" type="text/css" href="{% static "media/css/webuploader/webuploader.css" %}"/>
+<link rel="stylesheet" type="text/css" href="{% static "media/css/webuploader/style.css" %}" />
 
 <!-- Add Bootstrap -->
 <link rel="stylesheet" href="{% static "media/css/style.css" %}" type="text/css" />
@@ -18,7 +21,7 @@
 <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"> -->
 </head>
 <body>
-<div class="nav">
+<!-- <div class="nav">
 	<a href="/">Home</a> |
     <a href="/website">My Shop</a> |
     <a href="/website/add">Add Shop</a> |
@@ -31,7 +34,7 @@
     <a href="/account/register/">Sign up</a>
   {% endif %}
     | <a href="/admin/">Admin</a>
-</div>
+</div> -->
 <h4>{% block head %}{% endblock %}</h4>
 {% block content %}{% endblock %}
 </body>
