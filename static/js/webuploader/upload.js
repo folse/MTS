@@ -144,7 +144,7 @@
                 label: '点击选择图片'
             },
             formData: {
-                'token':'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz:P2gNZIshVFjf3aWhJ_RJBdpyb7E=:eyJzY29wZSI6InRzLWltYWdlMSIsImRlYWRsaW5lIjoxNDA4NTcwMTcxfQ=='
+                'token':'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz:U1mA9ecS4py6kDrRRkSCEL9CVYk=:eyJzY29wZSI6InRzLWltYWdlMSIsImRlYWRsaW5lIjoxNDA4NjM2OTA5fQ=='
             },
             dnd: '#dndArea',
             paste: '#uploader',
@@ -239,6 +239,7 @@
 
                     $info.text( text ).appendTo( $li );
                 };
+                console.log($wrap);
 
             if ( file.getStatus() === 'invalid' ) {
                 showError( file.statusText );
@@ -254,9 +255,8 @@
                     }
 
                     if( isSupportBase64 ) {
-                        console.log("log:",'a');
-                        img = $('<img src="'+src+'">');
-                        console.log("log:",img);
+                        
+                        img = $('<img />').attr('src', src);
                         $wrap.empty().append( img );
                     } else {
                         $.ajax('../../server/preview.php', {
