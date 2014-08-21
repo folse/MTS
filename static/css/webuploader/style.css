@@ -180,7 +180,7 @@ table {
 #uploader .filelist li p.progress {
     position: absolute;
     width: 100%;
-    bottom: 0;
+    bottom: -30px;
     left: 0;
     height: 8px;
     overflow: hidden;
