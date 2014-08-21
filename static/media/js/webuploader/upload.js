@@ -254,7 +254,9 @@
                     }
 
                     if( isSupportBase64 ) {
+                        console.log("log:",'a');
                         img = $('<img src="'+src+'">');
+                        console.log("log:",img);
                         $wrap.empty().append( img );
                     } else {
                         $.ajax('../../server/preview.php', {
