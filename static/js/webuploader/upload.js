@@ -270,27 +270,34 @@
             uploadToken = (function(){
                 
                 //STEP 1
-                putPolicy = '{"scope":' + bucketName + ',"deadline":1408678314}';
+                var now = new Date();
+                today = now.getDate();
+                now.setDate(today+1);
+                var timestamp = Date.parse(now);
+
+                var putPolicy = {};
+                putPolicy.scope = 'ts-image1';
+                putPolicy.deadline = timestamp/1000;
 
                 //SETP 2
                 var put_policy = JSON.stringify(putPolicy);
-                console && console.log("put_policy = ", put_policy);
+                //console && console.log("put_policy = ", put_policy);
 
                 //SETP 3
                 var encoded = base64encode(utf16to8(put_policy));
-                console && console.log("encoded = ", encoded);
+                //console && console.log("encoded = ", encoded);
 
                 //SETP 4
                 var hash = CryptoJS.HmacSHA1(encoded, secretKey);
                 var encoded_signed = hash.toString(CryptoJS.enc.Base64);
-                console && console.log("encoded_signed=", encoded_signed)
+                //console && console.log("encoded_signed=", encoded_signed)
 
                 //SETP 5
                 var upload_token = accessKey + ":" + safe64(encoded_signed) + ":" + encoded;
-                console && console.log("upload_token=", upload_token)
+                //console && console.log("upload_token=", upload_token)
 
-                //return upload_token;
-                return 'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz:M6qGszJaywTbfWIwp2lz4dK1IA8=:eyJzY29wZSI6InRzLWltYWdlMSIsImRlYWRsaW5lIjoxNDA4Njc4MzE0fQ==';
+                return upload_token;
+                //return 'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz:M6qGszJaywTbfWIwp2lz4dK1IA8=:eyJzY29wZSI6InRzLWltYWdlMSIsImRlYWRsaW5lIjoxNDA4Njc4MzE0fQ==';
             })(),
 
             // WebUploader实例
@@ -344,7 +351,7 @@
 
             return;
         } else if (!WebUploader.Uploader.support()) {
-            alert( 'Web Uploader 不支持您的浏览器！');
+            alert( 'Photo Uploader does not support this browser');
             return;
         }
 
@@ -352,7 +359,7 @@
         uploader = WebUploader.create({
             pick: {
                 id: '#filePicker',
-                label: '点击选择图片'
+                label: 'Upload Photos'
             },
             formData: {
                 'token':uploadToken
@@ -410,7 +417,7 @@
         // 添加“添加文件”的按钮，
         uploader.addButton({
             id: '#filePicker2',
-            label: '继续添加'
+            label: 'Add More'
         });
 
         uploader.on('ready', function() {
@@ -436,15 +443,15 @@
                 showError = function( code ) {
                     switch( code ) {
                         case 'exceed_size':
-                            text = '文件大小超出';
+                            text = 'file size more than';
                             break;
 
                         case 'interrupt':
-                            text = '上传暂停';
+                            text = 'Upload paused';
                             break;
 
                         default:
-                            text = '上传失败，请重试';
+                            text = 'Upload failed, please try again';
                             break;
                     }
 
@@ -455,12 +462,12 @@
                 showError( file.statusText );
             } else {
                 // @todo lazyload
-                $wrap.text( '预览中' );
+                $wrap.text( 'Preview' );
                 uploader.makeThumb( file, function( error, src ) {
                     var img;
 
                     if ( error ) {
-                        $wrap.text( '不能预览' );
+                        $wrap.text( 'No Preview' );
                         return;
                     }
 
@@ -478,7 +485,7 @@
                                 img = $('<img src="'+response.result+'">');
                                 $wrap.empty().append( img );
                             } else {
-                                $wrap.text("预览出错");
+                                $wrap.text("No Preview");
                             }
                         });
                     }
@@ -496,9 +503,8 @@
                     $btns.remove();
                 }
 
-                // 成功
+                
                 if ( cur === 'error' || cur === 'invalid' ) {
-                    console.log( file.statusText );
                     showError( file.statusText );
                     percentages[ file.id ][ 1 ] = 1;
                 } else if ( cur === 'interrupt' ) {
@@ -509,6 +515,7 @@
                     $info.remove();
                     $prgress.css('display', 'block');
                 } else if ( cur === 'complete' ) {
+                    // 成功
                     $li.append( '<span class="success"></span>' );
                 }
 
@@ -607,23 +614,23 @@
             var text = '', stats;
 
             if ( state === 'ready' ) {
-                text = '选中' + fileCount + '张图片，共' +
-                        WebUploader.formatSize( fileSize ) + '。';
+                text = 'Selected ' + fileCount + ' photos，' +
+                        WebUploader.formatSize( fileSize );
             } else if ( state === 'confirm' ) {
                 stats = uploader.getStats();
                 if ( stats.uploadFailNum ) {
-                    text = '已成功上传' + stats.successNum+ '张，'+
-                        stats.uploadFailNum + '张上传失败，<a class="retry" href="#">重新上传</a>失败图片或<a class="ignore" href="#">忽略</a>'
+                    text = stats.successNum+ ' success,'+
+                        stats.uploadFailNum + ' failded，<a class="retry" href="#"> Try again </a> or <a class="ignore" href="#"> Ignore </a>'
                 }
 
             } else {
                 stats = uploader.getStats();
-                text = '共' + fileCount + '张（' +
+                text = fileCount + 'photos（' +
                         WebUploader.formatSize( fileSize )  +
-                        '），已上传' + stats.successNum + '张';
+                        '）' + stats.successNum + 'photos uploaded';
 
                 if ( stats.uploadFailNum ) {
-                    text += '，失败' + stats.uploadFailNum + '张';
+                    text += '，' + stats.uploadFailNum + 'photos upload failded';
                 }
             }
 
@@ -660,18 +667,18 @@
                 case 'uploading':
                     $( '#filePicker2' ).addClass( 'element-invisible' );
                     $progress.show();
-                    $upload.text( '暂停上传' );
+                    $upload.text( 'Upload pause' );
                     break;
 
                 case 'paused':
                     $progress.show();
-                    $upload.text( '继续上传' );
+                    $upload.text( 'Continue' );
                     break;
 
                 case 'confirm':
                     $progress.hide();
                     $( '#filePicker2' ).removeClass( 'element-invisible' );
-                    $upload.text( '开始上传' );
+                    $upload.text( 'Upload' );
 
                     stats = uploader.getStats();
                     if ( stats.successNum && !stats.uploadFailNum ) {

@@ -419,7 +419,8 @@ hr.soften2 {
 	height: 24px;
 	font-size: 20px;
 	font-weight: normal;
-	margin: 12px;
+	margin-top: 12px;
+	margin-bottom: 28px;
 }
 .contact form textarea {
 	width: 600px;
@@ -427,7 +428,8 @@ hr.soften2 {
 	height: 8em;
 	font-size: 20px;
 	font-weight: normal;
-	margin: 10px;
+	margin-top: 10px;
+	margin-bottom: 28px;
 }
 .contact form .wpcf7-response-output {
 	margin-bottom: 1em;
@@ -1453,9 +1455,6 @@ form.bs-docs-example {
 }
 label {
 	display: block;
-	margin-top: 25px;
-	margin-left: 5px;
-	margin-bottom: 5px;
 }
 .textbox, .textmsg, .textselect {
 	padding: .5em;

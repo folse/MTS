@@ -710,7 +710,7 @@ legend small {
 	color: #999999;
 }
 label, input, button, select, textarea {
-	font-size: 22px;
+	font-size: 18px;
 	font-weight: bold;
 	line-height: 20px;
 }
@@ -786,7 +786,8 @@ select {
 	height: 44px;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
-	margin: 10px;
+	margin-top: 12px;
+	margin-bottom: 28px;
 	font-size: 20px;
 }
 select[multiple], select[size] {

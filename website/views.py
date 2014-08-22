@@ -42,12 +42,42 @@ class PlaceListView(ListView):
         
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_edit(request, objectId):
+    place = Place.Query.get(objectId=objectId)
     if request.method == "GET":
-        place = Place.Query.get(objectId=objectId)
+        print objectId
         placeForm = Add_Place_Form({'name':place.name,'address':place.address,'phone':place.phone,'open_hour':place.open_hour,'latitude':place.location.latitude,'longitude':place.location.longitude,'news':place.news,'description':place.description})
-        print placeForm
-        return render_to_response('website/place/place_edit.html', {'Add_Place_Form':placeForm},
+        return render_to_response('website/place/place_edit.html', {'Add_Place_Form':placeForm,'objectId':objectId},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
+    else:
+        data = request.POST
+        form = Add_Place_Form(data)
+        print place.objectId
+        print 'hi'
+        place.name = data.get('name')
+        place.news = data.get('news')
+        place.phone = data.get('phone')
+        place.address = data.get('address')
+        place.open_hour = data.get('open_hour')
+        place.description = data.get('description')
+        place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
+        place.save()
+
+        # photo = Photo()
+        # photo.url = data.get('photo')
+        # photo.save()
+        # photoIdList = [photo.objectId]
+        # place.addRelation('photos', 'Photo', photoIdList)
+
+        category = Category_Place.Query.get(objectId=data.get('category'))
+        if category:
+            place.addRelation('category', 'Category_Place', [data.get('category')])
+        else:
+            pass
+            # category = Category_Place()
+            # category.name = data.get('category')
+            # category.save()
+            # place.addRelation('category', 'Category_Place', [category.objectId])
+        return HttpResponseRedirect('/website/success')
         
 # class PlaceDetailView(DetailView):
 #     model = PlaceModel

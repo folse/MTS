@@ -34,6 +34,10 @@ blockquote, q {
     quotes: none;
 }
 
+span errinfo{
+    width: 100px;
+}
+
 blockquote:before, blockquote:after, q:before, q:after {
     content: '';
     content: none;
@@ -62,12 +66,12 @@ table {
 }
 
 #container {
-    width: 620px;
+    width: 618px;
     border: 1px solid #dadada;
     color: #838383;
     font-size: 12px;
     margin-top: 10px;
-    margin-left: -4px;
+    margin-left: -14px;
     background-color: #FFF;
 }
 
@@ -83,7 +87,7 @@ table {
 
 #uploader .placeholder {
     border: 3px dashed #e6e6e6;
-    min-height: 238px;
+    min-height: 120px;
     padding-top: 158px;
     text-align: center;
     background: url(../../img/webuploader/image.png) center 93px no-repeat;

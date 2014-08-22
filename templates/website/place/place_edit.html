@@ -21,7 +21,7 @@
           <div id="output" class="alert"> </div>
           <div class="form-meta clearfix">
             <div class="formcol">
-              <form action="/website/add/" method="post">
+              <form action="/website/edit/{{objectId}}/" method="post">
                 <table>
                   {% for field in Add_Place_Form %}
                     <tr>
@@ -41,7 +41,7 @@
                                 <div class="queueList">
                                     <div id="dndArea" class="placeholder">
                                         <div id="filePicker"></div>
-                                        <p>或将照片拖到这里，单次最多可选300张</p>
+                                        <p>Support drag and 300 maximum for each time</p>
                                     </div>
                                 </div>
                                 <div class="statusBar" style="display:none;">
@@ -50,7 +50,7 @@
                                         <span class="percentage"></span>
                                     </div><div class="info"></div>
                                     <div class="btns">
-                                        <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
+                                        <div id="filePicker2"></div><div class="uploadBtn">Upload</div>
                                     </div>
                                 </div>
                             </div>
