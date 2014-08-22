@@ -44,7 +44,7 @@ class PlaceListView(ListView):
 def place_edit(request, objectId):
     if request.method == "GET":
         place = Place.Query.get(objectId=objectId)
-        placeForm = Add_Place_Form({'name':place.name,'name':place.name,'name':place.name,'name':place.name,'name':place.name})
+        placeForm = Add_Place_Form({'name':place.name,'address':place.address,'phone':place.phone,'open_hour':place.open_hour,'latitude':place.latitude,'longitude':place.longitude,'news':place.news,'description':place.description})
         print placeForm
         return render_to_response('website/place/place_edit.html', {'Add_Place_Form':placeForm},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
