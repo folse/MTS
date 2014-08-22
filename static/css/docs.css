@@ -411,19 +411,20 @@ hr.soften2 {
 }
 .contact form label {
 	display: block;
-	color: #2f2f2f;
+	color: #787878;
 }
 .contact form input[type=text] {
 	padding: .5em;
-	width: 120%;
+	width: 600px;
+	height: 20px;
 	font-size: 22px;
 	font-weight: normal;
 	margin: 10px;
 }
 .contact form textarea {
-	width: 120%;
+	width: 600px;
 	padding: .5em;
-	height: 10em;
+	height: 8em;
 	font-size: 22px;
 	font-weight: normal;
 	margin: 10px;
