@@ -416,16 +416,16 @@ hr.soften2 {
 .contact form input[type=text] {
 	padding: .5em;
 	width: 600px;
-	height: 20px;
-	font-size: 22px;
+	height: 24px;
+	font-size: 20px;
 	font-weight: normal;
-	margin: 10px;
+	margin: 12px;
 }
 .contact form textarea {
 	width: 600px;
 	padding: .5em;
 	height: 8em;
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: normal;
 	margin: 10px;
 }

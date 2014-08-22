@@ -770,6 +770,7 @@ input[type="radio"], input[type="checkbox"] {
 input[type="file"], input[type="image"], input[type="submit"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
 	width: 16%px;
 	height: 44px;
+	margin-left: 6px;
 }
 select, input[type="file"] {
 	height: 30px;
