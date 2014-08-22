@@ -3,11 +3,6 @@
 {% block head %} {% endblock %}
 {% block content %}
 {% load staticfiles %}
-<!-- <form action="" method="post">{% csrf_token %}
-    {{ PlaceModel.name }}
-    {% for field in Add_Place_Form %}
-{% endfor %}
-</form> -->
 <div class="container">
   <div class="row-fluid">
     <div class="span12">
@@ -26,9 +21,8 @@
           <div id="output" class="alert"> </div>
           <div class="form-meta clearfix">
             <div class="formcol">
-            <form action="/website/add/" method="post">
-            <table>
-                
+              <form action="/website/add/" method="post">
+                <table>
                   {% for field in Add_Place_Form %}
                     <tr>
                       <td><label for="fname">{{field.label_tag}}</label></td>
@@ -65,15 +59,13 @@
                   <p>&nbsp;</p>
                   <p>&nbsp;</p>
                   <input type="submit" value="Submit" class="btn btn-success" />
-              </table>
-            </form>
+                </table>
+              </form>
             </div>
           </div>
       </div>
     </div>
   </div>
 </div>
-
-
 {% endblock %}
         
