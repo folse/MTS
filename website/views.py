@@ -11,8 +11,10 @@ from django.template import RequestContext
 from django.views.decorators.cache import never_cache
 from django.views.decorators.csrf import csrf_protect
 from django.views.generic.list import ListView
+from django.views.generic import DetailView
 
 from forms import Add_Place_Form
+from models import PlaceModel
 
 from parse_rest.user import User
 from parse_rest.connection import register
@@ -35,16 +37,27 @@ class Place(Object):
 class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
     def get_queryset(self):
-        places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId))
+        places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(2)
         return places
         
-
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
-def place_edit(request):
+def place_edit(request, objectId):
     if request.method == "GET":
+        place = Place.Query.get(objectId=objectId)
+        print place
         return render_to_response('website/place/place_edit.html', {'Add_Place_Form':Add_Place_Form()},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
         
+# class PlaceDetailView(DetailView):
+#     model = PlaceModel
+#     fields = ['name']
+#     template_name_suffix = '_edit'
+#     def get_queryset(self,pk):
+#         pass
+#         # template_name = 'website/place/place_edit.html'
+#         # def get_queryset(self):
+#         #     place = Place.Query.get(objectId='0FzG70BYlH')
+#         #     return place
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_add(request):

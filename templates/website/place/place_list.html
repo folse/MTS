@@ -6,16 +6,14 @@
 {% if object_list %}
     <tr align="center">
         <th>Name</th>
-        <th>Phone</th>
         <th>Address</th>
         <th>Settings</th>
     </tr>
     {% for place in object_list %}
         <tr align="center">
-            <td><a href="detail/{{place.id}}">{{place.name}}</a></td>
-            <td>{{place.phone}}</td>
+            <td><a href="detail/{{place.objectId}}">{{place.name}}</a></td>
             <td>{{place.address}}</td>
-            <td><a href="edit/{{place.id}}">Edit</a></td>
+            <td><a href="edit/{{place.objectId}}">Edit</a></td>
         </tr>
         <p></p>
     {% endfor %}
