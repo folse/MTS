@@ -37,18 +37,16 @@ class Place(Object):
 class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
     def get_queryset(self):
-        places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(2)
+        places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(100)
         return places
         
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_edit(request, objectId):
     place = Place.Query.get(objectId=objectId)
     if request.method == "GET":
-        place = Place.Query.get(objectId="sscyMpfZJ2")
-        categorys = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()
-        print categorys[0][name]
-        placeForm = Add_Place_Form({'name':place.name,'address':place.address, 'category':'1', 'phone':place.phone,'open_hour':place.open_hour,'latitude':place.location.latitude,'longitude':place.location.longitude,'news':place.news,'description':place.description})
-        return render_to_response('website/place/place_edit.html', {'Add_Place_Form':placeForm,'objectId':objectId},
+        category = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()
+        placeForm = Add_Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'latitude':place.location.latitude,'longitude':place.location.longitude,'news':place.news,'description':place.description})
+        return render_to_response('website/place/place_edit.html', {'Add_Place_Form':placeForm,'objectId':objectId,'categoryObjectId':category['objectId']},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         data = request.POST
@@ -62,21 +60,15 @@ def place_edit(request, objectId):
         place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
-        # photo = Photo()
-        # photo.url = data.get('photo')
-        # photo.save()
-        # photoIdList = [photo.objectId]
-        # place.addRelation('photos', 'Photo', photoIdList)
+        photo = Photo()
+        photo.url = data.get('menuPhoto')
+        photo.save()
+        photoIdList = [photo.objectId]
+        place.addRelation('photos', 'Photo', photoIdList)
 
-        category = Category_Place.Query.get(objectId=data.get('category'))
-        if category:
-            place.addRelation('category', 'Category_Place', [data.get('category')])
-        else:
-            pass
-            # category = Category_Place()
-            # category.name = data.get('category')
-            # category.save()
-            # place.addRelation('category', 'Category_Place', [category.objectId])
+        place.removeRelation('category', 'Category_Place', [data.get('oldCategory')])
+        place.addRelation('category', 'Category_Place', [data.get('category')])
+
         return HttpResponseRedirect('/website/success')
         
 # class PlaceDetailView(DetailView):

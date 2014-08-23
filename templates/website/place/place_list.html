@@ -1,32 +1,44 @@
 {% extends "base.html" %}
 {% block title %}Shop List{% endblock %}
-{% block head %}Shop List{% endblock %}
+{% block head %}{% endblock %}
 {% block content %}
-<table width="960">
-{% if object_list %}
-    <tr align="center">
-        <th>Name</th>
-        <th>Address</th>
-        <th>Settings</th>
-    </tr>
-    {% for place in object_list %}
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+          <div class="page-header">
+            <div class="row-fluid">
+              <div class="span12">
+                <h1> Shop List</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <table width="960">
+    {% if object_list %}
         <tr align="center">
-            <td><a href="detail/{{place.objectId}}">{{place.name}}</a></td>
-            <td>{{place.address}}</td>
-            <td><a href="edit/{{place.objectId}}">Edit</a></td>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Settings</th>
         </tr>
-        <p></p>
-    {% endfor %}
-{% else %}
-	<tr align="center"><td colspan="8">No Apps</td></tr>
-{% endif %}
-<tr align="right"> 
-	<td colspan="8">
-    <p>&nbsp;</p>
-    {% include 'paginator.html' %}
-	</td>
-</tr> 
-</table>
-
+        {% for place in object_list %}
+            <tr align="center">
+                <td>{{place.name}}</td>
+                <td>{{place.address}}</td>
+                <td><a href="edit/{{place.objectId}}">Edit</a></td>
+            </tr>
+            <p></p>
+        {% endfor %}
+    {% else %}
+    	<tr align="center"><td colspan="8">No Shop</td></tr>
+    {% endif %}
+    <tr align="right"> 
+    	<td colspan="8">
+        <p>&nbsp;</p>
+        {% include 'paginator.html' %}
+    	</td>
+    </tr> 
+    </table>
+</div>
 {% endblock %}
         

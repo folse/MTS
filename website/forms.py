@@ -14,7 +14,6 @@ class Category_Place(Object):
 class Add_Place_Form(forms.Form):
 	
 	PLACE_CATEGORY_CHOICES = [(category.objectId, category.name) for category in Category_Place.Query.all()]
-
 	name = forms.CharField(max_length=32, label='Name', required=True, help_text='*')
 	address = forms.CharField(max_length=256, label='Address', required=True, help_text='*')
 	category = forms.ChoiceField(label='Category', required=True, choices=PLACE_CATEGORY_CHOICES, help_text='*')

@@ -751,7 +751,6 @@
                 case 'stopUpload':
                     setState( 'paused' );
                     break;
-
             }
         });
 
@@ -775,7 +774,16 @@
 
         // uploadaccept 这个事件才可以拿到qiniu返回的数据 这时已经上传成功!!!
         uploader.on( 'uploadAccept', function( file, response ) {
-            alert(response.hash);
+            //alert(response.hash);
+        
+            console.log($upload.className);
+            
+            // if(btn.indexOf("menu") > 0 )
+            // {
+            //     alert('Cts中包含Text字符串');
+            // }
+
+            document.getElementById('menuPhoto').value = 'http://' + bucketName + '.qiniudn.com/' + response.hash;
         });
 
         $info.on( 'click', '.retry', function() {
