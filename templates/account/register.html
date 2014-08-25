@@ -1,22 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Sign up{% endblock %}
-{% block head %}Sign up{% endblock %}
+{% block head %}{% endblock %}
 {% block content %}
 {% load staticfiles %}
-<form action="." method="post">
-  <table>
-    {% for field in regForm %}
-    <tr>
-      <td>{{field.label_tag}}</td> 
-      <td>{{field}} <span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
-    </tr>
-    {% endfor %}
-    <tr>
-      <td>Agree with <a href="{% static "terms.html" %}" target="_blank" style="text-decoration:none">User Terms</a></td>
-    </tr>
-    <tr>
-      <td colspan="2" align="center"><input type="submit" value="Sign up" /></td>
-    </tr>
-  </table>
-</form>
+<div class="container">
+    <div class="row-fluid">
+        <div class="span12">
+          <div class="page-header">
+            <div class="row-fluid">
+              <div class="span12">
+                <h1>Sign up</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="account">
+        <form action="." method="post">
+          <table>
+            {% for field in regForm %}
+            <tr>
+              <td><label>{{field.label_tag}}</label></td>
+            </tr>
+            <tr>
+              <td>{{field}} <span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
+            </tr>
+            {% endfor %}
+            <tr>
+              <td><label>Agree with <a href="{% static "terms.html" %}" target="_blank" style="text-decoration:none" class="link">User Terms</a></label></td>
+            </tr>
+            <tr>
+              <td colspan="2" align="center"><input type="submit" value="Sign up" class="btn" /></td>
+            </tr>
+          </table>
+        </form>
+    </div>
+</div>
 {% endblock %}

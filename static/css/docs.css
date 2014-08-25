@@ -400,6 +400,55 @@ hr.soften2 {
 	margin-bottom: 20px;
 	display: inline-block;
 }
+/* Place_list */
+.place th{
+	color: #61C168;
+	font-weight:900;
+	font-size: 24px;
+}
+.place td{
+	color: #787878;
+	font-size: 22px;
+	padding-top: 20px;
+}
+.place a{
+	color: #61C168;
+	font-weight:500;
+	font-size: 20px;
+}
+/* Account */
+.account label{
+	color: #787878;
+}
+.account input{
+	padding: .5em;
+	width: 300px;
+	height: 24px;
+	font-size: 20px;
+	font-weight: normal;
+	margin-top: 12px;
+	margin-bottom: 28px;
+}
+.account input[type=submit]{
+	height: 44px;
+	margin-left: 0;
+	color: #ffffff;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	background-color: #5bb75b;
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
+	background-image: -webkit-linear-gradient(top, #62c462, #51a351);
+	background-image: -o-linear-gradient(top, #62c462, #51a351);
+	background-image: linear-gradient(to bottom, #62c462, #51a351);
+	background-image: -moz-linear-gradient(top, #62c462, #51a351);
+	background-repeat: repeat-x;
+	border-color: #51a351 #51a351 #387038;
+	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+ filter: progid:dximagetransform.microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);
+ filter: progid:dximagetransform.microsoft.gradient(enabled=false);
+}
+.account a{
+	color: #5bb75b;
+}
 /* Contact Specific */
 .contact form .formcol {
 	width: 47.058823529412%;

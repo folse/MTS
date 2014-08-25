@@ -28,7 +28,7 @@ def login(request, template_name='account/login.html',
         if form.is_valid():
             # Light security check -- make sure redirect_to isn't garbage.
             if not redirect_to or ' ' in redirect_to:
-                redirect_to = '/website/list'
+                redirect_to = '/website'
             
             # Heavier security check -- redirects to http://example.com should 
             # not be allowed, but things like /view/?param=http://example.com 
@@ -76,7 +76,7 @@ def register(request):
             #login() saves the user's ID in the session
             user = authenticate(username=data['username'], password=data['password'])
             login(request, user) 
-            return HttpResponseRedirect('/website/list')
+            return HttpResponseRedirect('/website')
         else:
             return render_to_response('account/register.html', {'regForm':regForm},
                 context_instance=RequestContext(request), mimetype="application/xhtml+xml")

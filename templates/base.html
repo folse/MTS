@@ -20,24 +20,29 @@
 <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png"> -->
 </head>
 <body>
-<!-- <div class="nav-agency">
+<div class="nav-agency">
   <div class="navbar navbar-static-top"> 
     <div class="navbar-inner">
-      <div class="container"> <a class="brand" href="index.html"> <img src="assets/img/Logo.png" alt="Logo"></a>
+      <div class="container"> <a class="brand" href="http://mtscandic.com"> <img src="/static/img/Logodark.png" alt="Logo" /></a>
         <div id="main-nav">
           <div class="nav-collapse collapse">
             <ul class="nav">
-              <li class="active"><a href="index.html">Home</a> </li>
-              <li><a href="app.html">Product</a> </li>
-              <li><a href="contact.html">Contact</a> </li>
-              <li><a href="http://blog.mtscandic.com" target="_blank">Blogg</a> </li>
+              {% if user.is_authenticated %}
+                <li class="#active"><a href="/website">My Shop</a> </li>
+                <li><a href="/website/add">Add Shop</a> </li>
+                <li><a href="#?/user/{{user.username}}">My Account</a> </li>
+                <li><a href="/account/logout/">Logout</a> </li>
+              {% else %}
+                <li><a href="/account/login/?next=">Login</a> </li>
+                <li><a href="/account/register/">Sign up</a> </li>
+              {% endif %}
             </ul>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 <!-- <div class="nav">
 	<a href="/">Home</a> |
     <a href="/website">My Shop</a> |

@@ -3202,8 +3202,9 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 .navbar .nav > li > a {
 	float: none;
 	padding: 10px 15px 10px;
-	color: #2D2D2D;
+	color: #61C168;
 	text-decoration: none;
+	font-size: 19px;
 }
 .navbar .nav .dropdown-toggle .caret {
 	margin-top: 0px;

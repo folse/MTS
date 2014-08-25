@@ -8,37 +8,39 @@
           <div class="page-header">
             <div class="row-fluid">
               <div class="span12">
-                <h1> Shop List</h1>
+                <h1>My Shop</h1>
               </div>
             </div>
           </div>
         </div>
     </div>
-    <table width="960">
-    {% if object_list %}
-        <tr align="center">
-            <th>Name</th>
-            <th>Address</th>
-            <th>Settings</th>
-        </tr>
-        {% for place in object_list %}
+    <div class="place">
+        <table width="960">
+        {% if object_list %}
             <tr align="center">
-                <td>{{place.name}}</td>
-                <td>{{place.address}}</td>
-                <td><a href="edit/{{place.objectId}}">Edit</a></td>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Settings</th>
             </tr>
-            <p></p>
-        {% endfor %}
-    {% else %}
-    	<tr align="center"><td colspan="8">No Shop</td></tr>
-    {% endif %}
-    <tr align="right"> 
-    	<td colspan="8">
-        <p>&nbsp;</p>
-        {% include 'paginator.html' %}
-    	</td>
-    </tr> 
-    </table>
+            {% for place in object_list %}
+                <tr align="center">
+                    <td>{{place.name}}</td>
+                    <td>{{place.address}}</td>
+                    <td><a href="edit/{{place.objectId}}">EDIT</a></td>
+                </tr>
+                <p></p>
+            {% endfor %}
+        {% else %}
+        	<tr align="center"><td colspan="8">No Shop</td></tr>
+        {% endif %}
+        <tr align="right"> 
+        	<td colspan="8">
+            <p>&nbsp;</p>
+            {% include 'paginator.html' %}
+        	</td>
+        </tr> 
+        </table>
+    </div>
 </div>
 {% endblock %}
         
