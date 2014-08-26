@@ -775,15 +775,22 @@
         // uploadaccept 这个事件才可以拿到qiniu返回的数据 这时已经上传成功!!!
         uploader.on( 'uploadAccept', function( file, response ) {
             //alert(response.hash);
+
+            var btnId = $upload.attr('value');
         
-            console.log($upload.className);
+            console.log(btnId);
+
+            if (btnId == 'menu') {
+
+                console.log('hello');
+            }
             
             // if(btn.indexOf("menu") > 0 )
             // {
             //     alert('Cts中包含Text字符串');
             // }
 
-            document.getElementById('menuPhoto').value = 'http://' + bucketName + '.qiniudn.com/' + response.hash;
+            //document.getElementById('menuPhoto').value = 'http://' + bucketName + '.qiniudn.com/' + response.hash;
         });
 
         $info.on( 'click', '.retry', function() {
