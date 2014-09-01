@@ -20,6 +20,9 @@ from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
+class Tag(Object):
+    pass
+
 class Photo(Object):
 	pass
 
@@ -39,7 +42,13 @@ class PlaceListView(ListView):
     def get_queryset(self):
         places = Place.Query.filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(100)
         return places
-        
+
+@user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
+def place_upload(request):
+    if request.method == "GET":
+        return render_to_response('website/place/place_upload.html', {'Add_Place_Form':Add_Place_Form()},
+        context_instance=RequestContext(request), content_type="application/xhtml+xml")
+
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_edit(request, objectId):
     place = Place.Query.get(objectId=objectId)
@@ -57,6 +66,9 @@ def place_edit(request, objectId):
         place.address = data.get('address')
         place.open_hour = data.get('open_hour')
         place.description = data.get('description')
+        place.has_park = data.get('has_park')
+        place.has_alcohol = data.get('has_alcohol')
+        place.phone_reservation = data.get('phone_reservation')
         place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
@@ -97,14 +109,17 @@ def place_add(request):
         place.address = data.get('address')
         place.open_hour = data.get('open_hour')
         place.description = data.get('description')
+        place.has_park = bool(data.get('has_park'))
+        place.has_alcohol = bool(data.get('has_alcohol'))
+        place.phone_reservation = bool(data.get('phone_reservation'))
         place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
-        # photo = Photo()
-        # photo.url = data.get('photo')
-        # photo.save()
-        # photoIdList = [photo.objectId]
-        # place.addRelation('photos', 'Photo', photoIdList)
+        photo = Photo()
+        photo.url = data.get('menuPhoto')
+        photo.save()
+        photoIdList = [photo.objectId]
+        place.addRelation('photos', 'Photo', photoIdList)
 
         user = User.Query.get(objectId=request.user.user_profile.objectId)
         if user:
@@ -113,11 +128,21 @@ def place_add(request):
         category = Category_Place.Query.get(objectId=data.get('category'))
         if category:
         	place.addRelation('category', 'Category_Place', [data.get('category')])
-        else:
-            pass
-        	# category = Category_Place()
-        	# category.name = data.get('category')
-        	# category.save()
-        	# place.addRelation('category', 'Category_Place', [category.objectId])
+
+        tagNames = data.get('tags').split(',')
+        tagList = []
+        for tagName in tagNames:
+            existTags = Tag.Query.filter(name=tagName)
+            if existTags.count() == 0:
+                tag = Tag()
+                tag.name = tagName
+                tag.save()
+                tagList.append(tag.objectId)
+            else:
+                tagList.append(existTags[0].objectId)
+
+        if len(tagList) > 0:
+            place.addRelation('tag', 'Tag', tagList)
+
         return HttpResponseRedirect('/website/success')
 

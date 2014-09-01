@@ -417,6 +417,10 @@ hr.soften2 {
 	font-size: 20px;
 }
 /* Account */
+.account {
+	margin-left: 36%;
+	margin-right: auto;
+}
 .account label{
 	color: #787878;
 }
