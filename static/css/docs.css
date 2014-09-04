@@ -50,6 +50,29 @@ body > .navbar .brand:hover {
 	border-bottom: 1px solid red;
 	margin-bottom: 60px;
 }
+
+.open-hour {
+	width: 100px;
+	margin-left: -460px;
+}
+.close-label {
+	margin-left: -190px;
+	color: #787878;
+    display: block;
+}
+.close-hour {
+	width: 100px;
+	margin-left: -120px;
+}
+.open-mintue {
+	width: 100px;
+	margin-left: -306px;
+}
+.close-mintue {
+	width: 100px;
+	margin-left: 10px;
+}
+
 /* Sections
 -------------------------------------------------- */
 

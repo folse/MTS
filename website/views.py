@@ -116,7 +116,7 @@ def place_add(request):
         place.save()
 
         photo = Photo()
-        photo.url = data.get('menuPhoto')
+        photo.url = data.get('menu_photo')
         photo.save()
         photoIdList = [photo.objectId]
         place.addRelation('photos', 'Photo', photoIdList)

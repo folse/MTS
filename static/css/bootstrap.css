@@ -782,7 +782,7 @@ select, input[type="file"] {
 	line-height: 30px;
 }
 select {
-	width: 624px;
+	width: 160px;
 	height: 44px;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;

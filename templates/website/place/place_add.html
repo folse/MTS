@@ -37,7 +37,7 @@
                   {% endfor %}
                   <tr>
                     <td><label for="fname">Menu Photo:</label></td>
-                    <input type="hidden" id="menuPhoto" name="menuPhoto" value="0" />
+                    <input type="hidden" id="menu_photo" name="menu_photo" value="0" />
                   </tr>
                   <div id="wrapper">
                     <div id="container">
@@ -49,7 +49,7 @@
                                         <p>Support drag and 300 maximum for each time</p>
                                     </div>
                                 </div>
-                                <div class="statusBar" style="display:none;">
+                                <div class="statusBar" style="display:none;\">
                                     <div class="progress">
                                         <span class="text">0%</span>
                                         <span class="percentage"></span>
@@ -61,11 +61,110 @@
                                 </div>
                             </div>
                       </div>
-                  </div>
-                  <p>&nbsp;</p>
-                  <p>&nbsp;</p>
-                  <input type="submit" value="Submit" class="btn btn-success" />
-              </table>
+<!--                       <div id="container">
+                            <div id="uploader">
+                                <div class="queueList">
+                                    <div id="dndArea3" class="placeholder">
+                                        <div id="filePicker3"></div>
+                                        <p>Support drag and 300 maximum for each time</p>
+                                    </div>
+                                </div>
+                                <div class="statusBar" style="display:none;\">
+                                    <div class="progress">
+                                        <span class="text">0%</span>
+                                        <span class="percentage"></span>
+                                    </div><div class="info"></div>
+                                    <div class="btns">
+                                        <div id="filePicker4"></div>
+                                        <div class="uploadBtn" id='uploadBtn' value='menu'>Upload<div class="abc" id='abc4' value='menu'></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                      </div> -->
+                    </div>
+                    <tr>
+                        <td><label for="fname">Monday　　Open:</label></td>
+                        <td>
+                            <select name="mon_start_hour" id="mon_start_hour" class='open-hour'>
+                                <option>　　1</option>
+                                <option>　　2</option>
+                                <option>　　3</option>
+                                <option>　　4</option>
+                                <option>　　5</option>
+                                <option>　　6</option>
+                                <option>　　7</option>
+                                <option>　　8</option>
+                                <option>　　9</option>
+                                <option>　　10</option>
+                                <option>　　11</option>
+                                <option>　　12</option>
+                                <option>　　13</option>
+                                <option>　　14</option>
+                                <option>　　15</option>
+                                <option>　　16</option>
+                                <option>　　17</option>
+                                <option>　　18</option>
+                                <option>　　19</option>
+                                <option>　　20</option>
+                                <option>　　21</option>
+                                <option>　　22</option>
+                                <option>　　23</option>
+                                <option>　　24</option>
+                            </select>
+                            <strong>&nbsp;：</strong>
+                        </td>
+                        <td>
+                            <select name="mon_start_hour" id="mon_start_hour" class='open-mintue'>
+                                <option>　　00</option>
+                                <option>　　15</option>
+                                <option>　　30</option>
+                                <option>　　45</option>
+                            </select>
+                        </td>
+                        <td><label class="close-label">Close:</label></td>
+                        <td>
+                            <select name="mon_start_hour" id="mon_start_hour" class='close-hour'>
+                                <option>　　1</option>
+                                <option>　　2</option>
+                                <option>　　3</option>
+                                <option>　　4</option>
+                                <option>　　5</option>
+                                <option>　　6</option>
+                                <option>　　7</option>
+                                <option>　　8</option>
+                                <option>　　9</option>
+                                <option>　　10</option>
+                                <option>　　11</option>
+                                <option>　　12</option>
+                                <option>　　13</option>
+                                <option>　　14</option>
+                                <option>　　15</option>
+                                <option>　　16</option>
+                                <option>　　17</option>
+                                <option>　　18</option>
+                                <option>　　19</option>
+                                <option>　　20</option>
+                                <option>　　21</option>
+                                <option>　　22</option>
+                                <option>　　23</option>
+                                <option>　　24</option>
+                            </select>：
+                            <strong>&nbsp;：</strong>
+                        </td>
+                        <td>
+                            <select name="mon_start_hour" id="mon_start_hour" class='close-mintue'>
+                                <option>　　00</option>
+                                <option>　　15</option>
+                                <option>　　30</option>
+                                <option>　　45</option>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <input type="submit" value="Submit" class="btn btn-success" />
+                </table>
             </form>
             </div>
           </div>
@@ -74,6 +173,7 @@
   </div>
 </div>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
+<script type="text/javascript" src="/static/js/base64.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/CryptoJS.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/upload.js"></script>
