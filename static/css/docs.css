@@ -52,25 +52,29 @@ body > .navbar .brand:hover {
 }
 
 .open-hour {
-	width: 100px;
+	width: 62px;
+	height: 36px;
 	margin-left: -460px;
 }
+.open-mintue {
+	width: 62px;
+	height: 36px;
+	margin-left: -388px;
+}
 .close-label {
-	margin-left: -190px;
+	margin-left: -300px;
 	color: #787878;
     display: block;
 }
 .close-hour {
-	width: 100px;
-	margin-left: -120px;
-}
-.open-mintue {
-	width: 100px;
-	margin-left: -306px;
+	width: 62px;
+	height: 36px;
+	margin-left: -230px;
 }
 .close-mintue {
-	width: 100px;
-	margin-left: 10px;
+	width: 62px;
+	height: 36px;
+	margin-left: -152px;
 }
 
 /* Sections

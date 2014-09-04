@@ -23,148 +23,600 @@
             <div class="formcol">
             <form action="/website/add/" method="post">
             <table>
-                
-                  {% for field in Add_Place_Form %}
-                    <tr>
-                      <td><label for="fname">{{field.label_tag}}</label></td>
-                    </tr>
-                    <tr>
-                      <td>{{field}} </td>
-                      <td>&nbsp; &nbsp; </td>
-                      <td><span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
-                      <td>{{ info }}</td>
-                    </tr>
-                  {% endfor %}
-                  <tr>
+                {% for field in Add_Place_Form %}
+                <tr>
+                  <td><label for="fname">{{field.label_tag}}</label></td>
+                </tr>
+                <tr>
+                  <td>{{field}} </td>
+                  <td>&nbsp; &nbsp; </td>
+                  <td><span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
+                  <td>{{ info }}</td>
+                </tr>
+                {% endfor %}
+                <tr>
                     <td><label for="fname">Menu Photo:</label></td>
                     <input type="hidden" id="menu_photo" name="menu_photo" value="0" />
-                  </tr>
-                  <div id="wrapper">
+                </tr>
+                <div id="wrapper">
                     <div id="container">
-                            <!--头部，相册选择和格式选择-->
-                            <div id="uploader">
-                                <div class="queueList">
-                                    <div id="dndArea" class="placeholder">
-                                        <div id="filePicker"></div>
-                                        <p>Support drag and 300 maximum for each time</p>
-                                    </div>
-                                </div>
-                                <div class="statusBar" style="display:none;\">
-                                    <div class="progress">
-                                        <span class="text">0%</span>
-                                        <span class="percentage"></span>
-                                    </div><div class="info"></div>
-                                    <div class="btns">
-                                        <div id="filePicker2"></div>
-                                        <div class="uploadBtn" id='uploadBtn' value='menu'>Upload<div class="abc" id='abc' value='menu'></div></div>
-                                    </div>
+                        <div id="uploader">
+                            <div class="queueList">
+                                <div id="dndArea" class="placeholder">
+                                    <div id="filePicker"></div>
+                                    <p>Support drag and 300 maximum for each time</p>
                                 </div>
                             </div>
-                      </div>
-<!--                       <div id="container">
-                            <div id="uploader">
-                                <div class="queueList">
-                                    <div id="dndArea3" class="placeholder">
-                                        <div id="filePicker3"></div>
-                                        <p>Support drag and 300 maximum for each time</p>
-                                    </div>
-                                </div>
-                                <div class="statusBar" style="display:none;\">
-                                    <div class="progress">
-                                        <span class="text">0%</span>
-                                        <span class="percentage"></span>
-                                    </div><div class="info"></div>
-                                    <div class="btns">
-                                        <div id="filePicker4"></div>
-                                        <div class="uploadBtn" id='uploadBtn' value='menu'>Upload<div class="abc" id='abc4' value='menu'></div></div>
-                                    </div>
+                            <div class="statusBar" style="display:none;\">
+                                <div class="progress">
+                                    <span class="text">0%</span>
+                                    <span class="percentage"></span>
+                                </div><div class="info"></div>
+                                <div class="btns">
+                                    <div id="filePicker2"></div>
+                                    <div class="uploadBtn" id='uploadBtn' value='menu'>Upload<div class="abc" id='abc' value='menu'></div></div>
                                 </div>
                             </div>
-                      </div> -->
+                        </div>
                     </div>
-                    <tr>
-                        <td><label for="fname">Monday　　Open:</label></td>
-                        <td>
-                            <select name="mon_start_hour" id="mon_start_hour" class='open-hour'>
-                                <option>　　1</option>
-                                <option>　　2</option>
-                                <option>　　3</option>
-                                <option>　　4</option>
-                                <option>　　5</option>
-                                <option>　　6</option>
-                                <option>　　7</option>
-                                <option>　　8</option>
-                                <option>　　9</option>
-                                <option>　　10</option>
-                                <option>　　11</option>
-                                <option>　　12</option>
-                                <option>　　13</option>
-                                <option>　　14</option>
-                                <option>　　15</option>
-                                <option>　　16</option>
-                                <option>　　17</option>
-                                <option>　　18</option>
-                                <option>　　19</option>
-                                <option>　　20</option>
-                                <option>　　21</option>
-                                <option>　　22</option>
-                                <option>　　23</option>
-                                <option>　　24</option>
-                            </select>
-                            <strong>&nbsp;：</strong>
-                        </td>
-                        <td>
-                            <select name="mon_start_hour" id="mon_start_hour" class='open-mintue'>
-                                <option>　　00</option>
-                                <option>　　15</option>
-                                <option>　　30</option>
-                                <option>　　45</option>
-                            </select>
-                        </td>
-                        <td><label class="close-label">Close:</label></td>
-                        <td>
-                            <select name="mon_start_hour" id="mon_start_hour" class='close-hour'>
-                                <option>　　1</option>
-                                <option>　　2</option>
-                                <option>　　3</option>
-                                <option>　　4</option>
-                                <option>　　5</option>
-                                <option>　　6</option>
-                                <option>　　7</option>
-                                <option>　　8</option>
-                                <option>　　9</option>
-                                <option>　　10</option>
-                                <option>　　11</option>
-                                <option>　　12</option>
-                                <option>　　13</option>
-                                <option>　　14</option>
-                                <option>　　15</option>
-                                <option>　　16</option>
-                                <option>　　17</option>
-                                <option>　　18</option>
-                                <option>　　19</option>
-                                <option>　　20</option>
-                                <option>　　21</option>
-                                <option>　　22</option>
-                                <option>　　23</option>
-                                <option>　　24</option>
-                            </select>：
-                            <strong>&nbsp;：</strong>
-                        </td>
-                        <td>
-                            <select name="mon_start_hour" id="mon_start_hour" class='close-mintue'>
-                                <option>　　00</option>
-                                <option>　　15</option>
-                                <option>　　30</option>
-                                <option>　　45</option>
-                            </select>
-                        </td>
-                    </tr>
-                    
-                    <p>&nbsp;</p>
-                    <p>&nbsp;</p>
-                    <input type="submit" value="Submit" class="btn btn-success" />
-                </table>
+                </div>
+                <p>&nbsp;</p>
+                <tr>
+                    <td><label for="fname">Open Hour:</label></td>
+                    <input type="hidden" id="open_hour" name="open_hour" value="0" />
+                </tr>
+                <tr>
+                    <td><label for="fname">Monday Open:</label></td>
+                    <td>
+                        <select name="mon_open_hour" id="mon_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="mon_open_minute" id="mon_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="mon_close_hour" id="mon_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="mon_close_minute" id="mon_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><label for="fname">Tuesday Open:</label></td>
+                    <td>
+                        <select name="tue_open_hour" id="tue_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="tue_open_minute" id="tue_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="tue_close_hour" id="tue_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="tue_close_minute" id="tue_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                                    <tr>
+                    <td><label for="fname">Wednesday Open:</label></td>
+                    <td>
+                        <select name="wed_open_hour" id="wed_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="wed_open_minute" id="wed_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="wed_close_hour" id="wed_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="wed_close_minute" id="wed_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                                    <tr>
+                    <td><label for="fname">Thursday Open:</label></td>
+                    <td>
+                        <select name="thur_open_hour" id="thur_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="thur_open_minute" id="thur_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="thur_close_hour" id="thur_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="thur_close_minute" id="thur_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                                    <tr>
+                    <td><label for="fname">Friday Open:</label></td>
+                    <td>
+                        <select name="fri_open_hour" id="fri_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="fri_open_minute" id="fri_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="fri_close_hour" id="fri_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="fri_close_minute" id="fri_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                                    <tr>
+                    <td><label for="fname">Saturday Open:</label></td>
+                    <td>
+                        <select name="sta_open_hour" id="sta_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="sta_open_minute" id="sta_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="sta_close_hour" id="sta_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="sta_close_minute" id="sta_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+                                    <tr>
+                    <td><label for="fname">Sunday Open:</label></td>
+                    <td>
+                        <select name="sun_open_hour" id="sun_open_hour" class='open-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="sun_open_minute" id="sun_open_minute" class='open-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                    <td><label class="close-label">Close:</label></td>
+                    <td>
+                        <select name="sun_close_hour" id="sun_close_hour" class='close-hour'>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                            <option>6</option>
+                            <option>7</option>
+                            <option>8</option>
+                            <option>9</option>
+                            <option>10</option>
+                            <option>11</option>
+                            <option>12</option>
+                            <option>13</option>
+                            <option>14</option>
+                            <option>15</option>
+                            <option>16</option>
+                            <option>17</option>
+                            <option>18</option>
+                            <option>19</option>
+                            <option>20</option>
+                            <option>21</option>
+                            <option>22</option>
+                            <option>23</option>
+                            <option>24</option>
+                        </select>
+                        <strong>：</strong>
+                    </td>
+                    <td>
+                        <select name="sun_close_minute" id="sun_close_minute" class='close-mintue'>
+                            <option>00</option>
+                            <option>15</option>
+                            <option>30</option>
+                            <option>45</option>
+                        </select>
+                    </td>
+                </tr>
+
+                
+                <p>&nbsp;</p>
+                <p>&nbsp;</p>
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </table>
             </form>
             </div>
           </div>
@@ -177,4 +629,5 @@
 <script type="text/javascript" src="/static/js/webuploader/CryptoJS.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/upload.js"></script>
+<script type="text/javascript" src="/static/js/webuploader/upload-product.js"></script>
 {% endblock %}

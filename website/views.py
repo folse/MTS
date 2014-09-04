@@ -59,7 +59,7 @@ def place_edit(request, objectId):
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         data = request.POST
-        form = Add_Place_Form(data)
+        #form = Add_Place_Form(data)
         place.name = data.get('name')
         place.news = data.get('news')
         place.phone = data.get('phone')
@@ -101,7 +101,16 @@ def place_add(request):
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
     	data = request.POST
-        form = Add_Place_Form(data)
+        #form = Add_Place_Form(data)
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+        tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute')
+        wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
+
+        print mon_open_hour
         place = Place()
         place.name = data.get('name')
         place.news = data.get('news')
@@ -112,7 +121,7 @@ def place_add(request):
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
-        place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
+        #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
         photo = Photo()

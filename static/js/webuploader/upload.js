@@ -483,9 +483,9 @@
 
             } else {
                 stats = uploader.getStats();
-                text = fileCount + 'photos（' +
+                text = fileCount + ' photos（' +
                         WebUploader.formatSize( fileSize )  +
-                        '）' + stats.successNum + 'photos uploaded';
+                        '）' + stats.successNum + ' photos uploaded';
 
                 if ( stats.uploadFailNum ) {
                     text += '，' + stats.uploadFailNum + 'photos upload failded';
