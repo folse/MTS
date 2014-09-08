@@ -6,11 +6,11 @@
         accessKey = 'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz';
         secretKey = 'RuWkSQA1pXyjI_Rn_W4aRylC6cj0q_sgT3m7Xc39';
 
-        var $wrap = $('#uploader'),
+        var $wrap = $('#uploader3'),
 
             // 图片容器
             $queue = $( '<ul class="filelist"></ul>' )
-                .appendTo( $wrap.find( '.queueList' ) ),
+                .appendTo( $wrap.find( '.queueList3' ) ),
 
             // 状态栏，包括进度和控制按钮
             $statusBar = $wrap.find( '.statusBar' ),
@@ -19,7 +19,7 @@
             $info = $statusBar.find( '.info' ),
 
             // 上传按钮
-            $upload = $wrap.find( '.uploadBtn' ),
+            $upload = $wrap.find( '.uploadBtn3' ),
 
             // 没选择文件之前的内容。
             $placeHolder = $wrap.find( '.placeholder' ),
@@ -87,7 +87,6 @@
                 return r;
             })(),
 
-            
             uploadToken = (function(){
                 
                 //STEP 1
@@ -123,43 +122,6 @@
 
             // WebUploader实例
             uploader;
-
-            createAjax = function(argument) {
-                var xmlhttp = {};
-                if (window.XMLHttpRequest) {
-                    xmlhttp = new XMLHttpRequest();
-                } else {
-                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                return xmlhttp;
-            };
-
-            parseJSON = function(data) {
-                // Attempt to parse using the native JSON parser first
-                if (window.JSON && window.JSON.parse) {
-                    return window.JSON.parse(data);
-                }
-
-                if (data === null) {
-                    return data;
-                }
-                if (typeof data === "string") {
-
-                    // Make sure leading/trailing whitespace is removed (IE can't handle it)
-                    data = this.trim(data);
-
-                    if (data) {
-                        // Make sure the incoming data is actual JSON
-                        // Logic borrowed from http://json.org/json2.js
-                        if (/^[\],:{}\s]*$/.test(data.replace(/\\(?:["\\\/bfnrt]|u[\da-fA-F]{4})/g, "@").replace(/"[^"\\\r\n]*"|true|false|null|-?(?:\d+\.|)\d+(?:[eE][+-]?\d+|)/g, "]").replace(/(?:^|:|,)(?:\s*\[)+/g, ""))) {
-
-                            return (function() {
-                                return data;
-                            })();
-                        }
-                    }
-                }
-            };
 
         if ( !WebUploader.Uploader.support('flash') && WebUploader.browser.ie ) {
 
@@ -209,20 +171,20 @@
 
             return;
         } else if (!WebUploader.Uploader.support()) {
-            alert( 'Photo Uploader does not support this browser');
+            alert( 'Web Uploader 不支持您的浏览器！');
             return;
         }
 
         // 实例化
         uploader = WebUploader.create({
             pick: {
-                id: '#filePicker',
-                label: 'Upload Menu Photos'
+                id: '#filePicker3',
+                label: 'Upload Product Photos'
             },
             formData: {
                 'token':uploadToken
             },
-            dnd: '#dndArea',
+            dnd: '#dndArea3',
             paste: '#uploader',
             swf: '../../dist/Uploader.swf',
             chunked: false,
@@ -274,7 +236,7 @@
 
         // 添加“添加文件”的按钮，
         uploader.addButton({
-            id: '#filePicker2',
+            id: '#filePicker4',
             label: 'Add More'
         });
 
@@ -301,7 +263,7 @@
                 showError = function( code ) {
                     switch( code ) {
                         case 'exceed_size':
-                            text = 'file size more than';
+                            text = 'File size more than';
                             break;
 
                         case 'interrupt':
@@ -330,8 +292,7 @@
                     }
 
                     if( isSupportBase64 ) {
-                        
-                        img = $('<img />').attr('src', src);
+                        img = $('<img src="'+src+'"></img>');
                         $wrap.empty().append( img );
                     } else {
                         $.ajax('../../server/preview.php', {
@@ -361,8 +322,9 @@
                     $btns.remove();
                 }
 
-                
+                // 成功
                 if ( cur === 'error' || cur === 'invalid' ) {
+                    console.log( file.statusText );
                     showError( file.statusText );
                     percentages[ file.id ][ 1 ] = 1;
                 } else if ( cur === 'interrupt' ) {
@@ -373,7 +335,6 @@
                     $info.remove();
                     $prgress.css('display', 'block');
                 } else if ( cur === 'complete' ) {
-                    // 成功
                     $li.append( '<span class="success"></span>' );
                 }
 
@@ -436,7 +397,6 @@
 
 
             });
-
             $li.appendTo( $queue );
         }
 
@@ -516,14 +476,14 @@
 
                 case 'ready':
                     $placeHolder.addClass( 'element-invisible' );
-                    $( '#filePicker2' ).removeClass( 'element-invisible');
+                    $( '#filePicker4' ).removeClass( 'element-invisible');
                     $queue.show();
                     $statusBar.removeClass('element-invisible');
                     uploader.refresh();
                     break;
 
                 case 'uploading':
-                    $( '#filePicker2' ).addClass( 'element-invisible' );
+                    $( '#filePicker4' ).addClass( 'element-invisible' );
                     $progress.show();
                     $upload.text( 'Pause' );
                     break;
@@ -535,7 +495,7 @@
 
                 case 'confirm':
                     $progress.hide();
-                    $( '#filePicker2' ).removeClass( 'element-invisible' );
+                    $( '#filePicker4' ).removeClass( 'element-invisible' );
                     $upload.text( 'Upload' );
 
                     stats = uploader.getStats();
@@ -609,6 +569,7 @@
                 case 'stopUpload':
                     setState( 'paused' );
                     break;
+
             }
         });
 
@@ -631,7 +592,7 @@
             }
         });
 
-        // uploadaccept 这个事件才可以拿到qiniu返回的数据 这时已经上传成功!!!
+                // uploadaccept 这个事件才可以拿到qiniu返回的数据 这时已经上传成功!!!
         uploader.on( 'uploadAccept', function( file, response ) {
             //alert(response.hash);
 

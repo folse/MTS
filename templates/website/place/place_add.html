@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% block title %}{% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+<link rel="stylesheet" type="text/css" href="/static/css/webuploader/style3.css"/>
+{% endblock %}
 {% block content %}
 {% load staticfiles %}
 <div class="container">
@@ -54,13 +56,35 @@
                                 </div><div class="info"></div>
                                 <div class="btns">
                                     <div id="filePicker2"></div>
-                                    <div class="uploadBtn" id='uploadBtn' value='menu'>Upload<div class="abc" id='abc' value='menu'></div></div>
+                                    <div class="uploadBtn" id='uploadBtn' value='menu'>Upload</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <p>&nbsp;</p>
+                <div id="wrapper3">
+                    <div id="container3">
+                        <div id="uploader3">
+                            <div class="queueList3">
+                                <div id="dndArea3" class="placeholder">
+                                    <div id="filePicker3"></div>
+                                    <p>Support drag and 300 maximum for each time</p>
+                                </div>
+                            </div>
+                            <div class="statusBar" style="display:none;">
+                                <div class="progress">
+                                    <span class="text">0%</span>
+                                    <span class="percentage"></span>
+                                </div><div class="info"></div>
+                                <div class="btns">
+                                    <div id="filePicker4"></div>
+                                    <div class="uploadBtn3" id='uploadBtn3' value='product'>Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <tr>
                     <td><label for="fname">Open Hour:</label></td>
                     <input type="hidden" id="open_hour" name="open_hour" value="0" />
@@ -629,5 +653,5 @@
 <script type="text/javascript" src="/static/js/webuploader/CryptoJS.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/upload.js"></script>
-<script type="text/javascript" src="/static/js/webuploader/upload-product.js"></script>
+<script type="text/javascript" src="/static/js/webuploader/upload3.js"></script>
 {% endblock %}
