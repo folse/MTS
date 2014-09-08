@@ -11,11 +11,11 @@
         var environmentArray = new Array();
         var otherArray = new Array();
 
-        var $wrap = $('#uploader3'),
+        var $wrap = $('#uploader5'),
 
             // 图片容器
             $queue = $( '<ul class="filelist"></ul>' )
-                .appendTo( $wrap.find( '.queueList3' ) ),
+                .appendTo( $wrap.find( '.queueList5' ) ),
 
             // 状态栏，包括进度和控制按钮
             $statusBar = $wrap.find( '.statusBar' ),
@@ -24,7 +24,7 @@
             $info = $statusBar.find( '.info' ),
 
             // 上传按钮
-            $upload = $wrap.find( '.uploadBtn3' ),
+            $upload = $wrap.find( '.uploadBtn5' ),
 
             // 没选择文件之前的内容。
             $placeHolder = $wrap.find( '.placeholder' ),
@@ -183,13 +183,13 @@
         // 实例化
         uploader = WebUploader.create({
             pick: {
-                id: '#filePicker3',
-                label: 'Upload Product Photos'
+                id: '#filePicker5',
+                label: 'Upload Environment Photos'
             },
             formData: {
                 'token':uploadToken
             },
-            dnd: '#dndArea3',
+            dnd: '#dndArea5',
             paste: '#uploader',
             swf: '../../dist/Uploader.swf',
             chunked: false,
@@ -241,7 +241,7 @@
 
         // 添加“添加文件”的按钮，
         uploader.addButton({
-            id: '#filePicker4',
+            id: '#filePicker6',
             label: 'Add More'
         });
 
@@ -481,14 +481,14 @@
 
                 case 'ready':
                     $placeHolder.addClass( 'element-invisible' );
-                    $( '#filePicker4' ).removeClass( 'element-invisible');
+                    $( '#filePicker6' ).removeClass( 'element-invisible');
                     $queue.show();
                     $statusBar.removeClass('element-invisible');
                     uploader.refresh();
                     break;
 
                 case 'uploading':
-                    $( '#filePicker4' ).addClass( 'element-invisible' );
+                    $( '#filePicker6' ).addClass( 'element-invisible' );
                     $progress.show();
                     $upload.text( 'Pause' );
                     break;
@@ -500,7 +500,7 @@
 
                 case 'confirm':
                     $progress.hide();
-                    $( '#filePicker4' ).removeClass( 'element-invisible' );
+                    $( '#filePicker6' ).removeClass( 'element-invisible' );
                     $upload.text( 'Upload' );
 
                     stats = uploader.getStats();

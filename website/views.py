@@ -73,7 +73,7 @@ def place_edit(request, objectId):
         place.save()
 
         photo = Photo()
-        photo.url = data.get('menuPhoto')
+        photo.url = data.get('menu_photo')
         photo.save()
         photoIdList = [photo.objectId]
         place.addRelation('photos', 'Photo', photoIdList)
@@ -101,6 +101,7 @@ def place_add(request):
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
     	data = request.POST
+
         mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
         tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '/n'
         wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('web_open_minute') + '~' + data.get('web_close_hour') + ':' + data.get('web_close_minute') + '/n'
@@ -123,12 +124,40 @@ def place_add(request):
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
-        photo = Photo()
-        photo.url = data.get('menu_photo')
-        photo.save()
-        photoIdList = [photo.objectId]
-        place.addRelation('photos', 'Photo', photoIdList)
+        menuPhotoUrls = data.get('menu_photo').split(',')
+        for photoUrl in menuPhotoUrls :
+            photo = Photo()
+            photo.url = photoUrl
+            photo.menu_category = True
+            photo.save()
+            photoIdList.append(photo.objectId)
 
+        productPhotoUrls = data.get('product_photo').split(',')
+        for photoUrl in productPhotoUrls :
+            photo = Photo()
+            photo.url = photoUrl
+            photo.product_category = True
+            photo.save()
+            photoIdList.append(photo.objectId)
+
+        environmentPhotoUrls = data.get('environment_photo').split(',')
+        for photoUrl in environmentPhotoUrls :
+            photo = Photo()
+            photo.url = photoUrl
+            photo.environment_category = True
+            photo.save()
+            photoIdList.append(photo.objectId)
+
+        otherPhotoUrls = data.get('other_photo').split(',')
+        for photoUrl in otherPhotoUrls :
+            photo = Photo()
+            photo.url = photoUrl
+            photo.other_category = True
+            photo.save()
+            photoIdList.append(photo.objectId)
+
+        place.addRelation('photos', 'Photo', photoIdList)
+        
         user = User.Query.get(objectId=request.user.user_profile.objectId)
         if user:
             place.addRelation('user', '_User', [user.objectId])

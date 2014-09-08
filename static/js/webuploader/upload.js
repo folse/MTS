@@ -6,6 +6,11 @@
         accessKey = 'StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz';
         secretKey = 'RuWkSQA1pXyjI_Rn_W4aRylC6cj0q_sgT3m7Xc39';
 
+        var menuArray = new Array();
+        var productArray = new Array();
+        var environmentArray = new Array();
+        var otherArray = new Array();
+
         var $wrap = $('#uploader'),
 
             // 图片容器
@@ -639,21 +644,40 @@
         
             console.log(btnId);
 
+            url = 'http://' + bucketName + '.qiniudn.com/' + response.hash;
+
             if (btnId == 'menu') {
 
-                console.log('menu success');
+                console.log('menu success: ' + response.hash);
+
+                menuArray.push(url);
+
+                document.getElementById('menu_photo').value = menuArray;
 
             }else if (btnId == 'product') {
                 
-                console.log('product success');
-            }
-            
-            // if(btn.indexOf("menu") > 0 )
-            // {
-            //     alert('Cts中包含Text字符串');
-            // }
+                console.log('product success: ' + response.hash);
 
-            //document.getElementById('menuPhoto').value = 'http://' + bucketName + '.qiniudn.com/' + response.hash;
+                productArray.push(url);
+
+                document.getElementById('product_photo').value = productArray;
+
+            }else if (btnId == 'environment') {
+                
+                console.log('environment success: ' + response.hash);
+
+                environmentArray.push(url);
+
+                document.getElementById('environment_photo').value = environmentArray;
+
+            }else if (btnId == 'other') {
+                
+                console.log('other success: ' + response.hash);
+
+                otherArray.push(url);
+
+                document.getElementById('other_photo').value = otherArray;
+            }
         });
 
         $info.on( 'click', '.retry', function() {

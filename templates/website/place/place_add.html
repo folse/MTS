@@ -2,6 +2,8 @@
 {% block title %}{% endblock %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style3.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/webuploader/style5.css"/>
+<link rel="stylesheet" type="text/css" href="/static/css/webuploader/style7.css"/>
 {% endblock %}
 {% block content %}
 {% load staticfiles %}
@@ -63,6 +65,10 @@
                     </div>
                 </div>
                 <p>&nbsp;</p>
+                <tr>
+                    <td><label for="fname">Product Photo:</label></td>
+                    <input type="hidden" id="product_photo" name="product_photo" value="0" />
+                </tr>
                 <div id="wrapper3">
                     <div id="container3">
                         <div id="uploader3">
@@ -80,6 +86,60 @@
                                 <div class="btns">
                                     <div id="filePicker4"></div>
                                     <div class="uploadBtn3" id='uploadBtn3' value='product'>Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <tr>
+                    <td><label for="fname">Environment Photo:</label></td>
+                    <input type="hidden" id="environment_photo" name="environment_photo" value="0" />
+                </tr>
+                <div id="wrapper5">
+                    <div id="container5">
+                        <div id="uploader5">
+                            <div class="queueList5">
+                                <div id="dndArea5" class="placeholder">
+                                    <div id="filePicker5"></div>
+                                    <p>Support drag and 300 maximum for each time</p>
+                                </div>
+                            </div>
+                            <div class="statusBar" style="display:none;">
+                                <div class="progress">
+                                    <span class="text">0%</span>
+                                    <span class="percentage"></span>
+                                </div><div class="info"></div>
+                                <div class="btns">
+                                    <div id="filePicker6"></div>
+                                    <div class="uploadBtn5" id='uploadBtn5' value='environment'>Upload</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>&nbsp;</p>
+                <tr>
+                    <td><label for="fname">Other Photo:</label></td>
+                    <input type="hidden" id="other_photo" name="other_photo" value="0" />
+                </tr>
+                <div id="wrapper7">
+                    <div id="container7">
+                        <div id="uploader7">
+                            <div class="queueList7">
+                                <div id="dndArea7" class="placeholder">
+                                    <div id="filePicker7"></div>
+                                    <p>Support drag and 300 maximum for each time</p>
+                                </div>
+                            </div>
+                            <div class="statusBar" style="display:none;">
+                                <div class="progress">
+                                    <span class="text">0%</span>
+                                    <span class="percentage"></span>
+                                </div><div class="info"></div>
+                                <div class="btns">
+                                    <div id="filePicker8"></div>
+                                    <div class="uploadBtn7" id='uploadBtn7' value='other'>Upload</div>
                                 </div>
                             </div>
                         </div>
@@ -654,4 +714,6 @@
 <script type="text/javascript" src="/static/js/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/upload.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/upload3.js"></script>
+<script type="text/javascript" src="/static/js/webuploader/upload5.js"></script>
+<script type="text/javascript" src="/static/js/webuploader/upload7.js"></script>
 {% endblock %}
