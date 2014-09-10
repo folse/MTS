@@ -60,12 +60,12 @@ def place_edit(request, objectId):
     else:
         data = request.POST
         #form = Add_Place_Form(data)
-        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
-        tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '/n'
-        wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('web_open_minute') + '~' + data.get('web_close_hour') + ':' + data.get('web_close_minute') + '/n'
-        thur_open_hour = 'Thur ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '/n'
-        fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '/n'
-        sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '/n'
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute') + '\n'
+        tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '\n'
+        wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('web_open_minute') + '~' + data.get('web_close_hour') + ':' + data.get('web_close_minute') + '\n'
+        thur_open_hour = 'Thur ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '\n'
+        fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '\n'
+        sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
@@ -82,39 +82,40 @@ def place_edit(request, objectId):
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
-        menuPhotoUrls = data.get('menu_photo').split(',')
-        for photoUrl in menuPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.menu_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+        # photoIdList = []
+        # menuPhotoUrls = data.get('menu_photo').split(',')
+        # for photoUrl in menuPhotoUrls :
+        #     photo = Photo()
+        #     photo.url = photoUrl
+        #     photo.menu_category = True
+        #     photo.save()
+        #     photoIdList.append(photo.objectId)
 
-        productPhotoUrls = data.get('product_photo').split(',')
-        for photoUrl in productPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.product_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+        # productPhotoUrls = data.get('product_photo').split(',')
+        # for photoUrl in productPhotoUrls :
+        #     photo = Photo()
+        #     photo.url = photoUrl
+        #     photo.product_category = True
+        #     photo.save()
+        #     photoIdList.append(photo.objectId)
 
-        environmentPhotoUrls = data.get('environment_photo').split(',')
-        for photoUrl in environmentPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.environment_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+        # environmentPhotoUrls = data.get('environment_photo').split(',')
+        # for photoUrl in environmentPhotoUrls :
+        #     photo = Photo()
+        #     photo.url = photoUrl
+        #     photo.environment_category = True
+        #     photo.save()
+        #     photoIdList.append(photo.objectId)
 
-        otherPhotoUrls = data.get('other_photo').split(',')
-        for photoUrl in otherPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.other_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+        # otherPhotoUrls = data.get('other_photo').split(',')
+        # for photoUrl in otherPhotoUrls :
+        #     photo = Photo()
+        #     photo.url = photoUrl
+        #     photo.other_category = True
+        #     photo.save()
+        #     photoIdList.append(photo.objectId)
 
-        place.addRelation('photos', 'Photo', photoIdList)
+        # place.addRelation('photos', 'Photo', photoIdList)
 
         place.removeRelation('category', 'Category_Place', [data.get('oldCategory')])
         place.addRelation('category', 'Category_Place', [data.get('category')])
@@ -155,12 +156,12 @@ def place_add(request):
     else:
     	data = request.POST
 
-        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute')
-        tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '/n'
-        wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('web_open_minute') + '~' + data.get('web_close_hour') + ':' + data.get('web_close_minute') + '/n'
-        thur_open_hour = 'Thur ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '/n'
-        fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '/n'
-        sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '/n'
+        mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute') + '\n'
+        tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '\n'
+        wed_open_hour = 'Web ' + data.get('wed_open_hour') + ':' + data.get('web_open_minute') + '~' + data.get('web_close_hour') + ':' + data.get('web_close_minute') + '\n'
+        thur_open_hour = 'Thur ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '\n'
+        fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '\n'
+        sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
@@ -177,6 +178,7 @@ def place_add(request):
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
+        photoIdList = []
         menuPhotoUrls = data.get('menu_photo').split(',')
         for photoUrl in menuPhotoUrls :
             photo = Photo()
