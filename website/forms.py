@@ -11,7 +11,7 @@ class Category_Place(Object):
 	#print 'parse register'
 	pass
 	
-class Add_Place_Form(forms.Form):
+class Place_Form(forms.Form):
 	
 	PLACE_CATEGORY_CHOICES = [(category.objectId, category.name) for category in Category_Place.Query.all()]
 	name = forms.CharField(max_length=32, label='Name', required=True, help_text='*')
