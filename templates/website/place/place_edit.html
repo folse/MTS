@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} {% endblock %}
+{% block title %}Edit Shop{% endblock %}
 {% block head %}
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style3.css"/>
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style5.css"/>
@@ -707,6 +707,43 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+  document.getElementById('mon_open_hour').options[{{mon_open_hour}}-1].selected=true;
+  document.getElementById('mon_open_minute').options[{{mon_open_minute}}].selected=true;
+  document.getElementById('mon_close_hour').options[{{mon_close_hour}}-1].selected=true;
+  document.getElementById('mon_close_minute').options[{{mon_close_minute}}].selected=true;
+
+  document.getElementById('tue_open_hour').options[{{tue_open_hour}}-1].selected=true;
+  document.getElementById('tue_open_minute').options[{{tue_open_minute}}].selected=true;
+  document.getElementById('tue_close_hour').options[{{tue_close_hour}}-1].selected=true;
+  document.getElementById('tue_close_minute').options[{{tue_close_minute}}].selected=true;
+
+  document.getElementById('wed_open_hour').options[{{wed_open_hour}}-1].selected=true;
+  document.getElementById('wed_open_minute').options[{{wed_open_minute}}].selected=true;
+  document.getElementById('wed_close_hour').options[{{wed_close_hour}}-1].selected=true;
+  document.getElementById('wed_close_minute').options[{{wed_close_minute}}].selected=true;
+
+  document.getElementById('thur_open_hour').options[{{thur_open_hour}}-1].selected=true;
+  document.getElementById('thur_open_minute').options[{{thur_open_minute}}].selected=true;
+  document.getElementById('thur_close_hour').options[{{thur_close_hour}}-1].selected=true;
+  document.getElementById('thur_close_minute').options[{{thur_close_minute}}].selected=true;
+
+  document.getElementById('fri_open_hour').options[{{fri_open_hour}}-1].selected=true;
+  document.getElementById('fri_open_minute').options[{{fri_open_minute}}].selected=true;
+  document.getElementById('fri_close_hour').options[{{fri_close_hour}}-1].selected=true;
+  document.getElementById('fri_close_minute').options[{{fri_close_minute}}].selected=true;
+
+  document.getElementById('sta_open_hour').options[{{sta_open_hour}}-1].selected=true;
+  document.getElementById('sta_open_minute').options[{{sta_open_minute}}].selected=true;
+  document.getElementById('sta_close_hour').options[{{sta_close_hour}}-1].selected=true;
+  document.getElementById('sta_close_minute').options[{{sta_close_minute}}].selected=true;
+
+  document.getElementById('sun_open_hour').options[{{sun_open_hour}}-1].selected=true;
+  document.getElementById('sun_open_minute').options[{{sun_open_minute}}].selected=true;
+  document.getElementById('sun_close_hour').options[{{sun_close_hour}}-1].selected=true;
+  document.getElementById('sun_close_minute').options[{{sun_close_minute}}].selected=true;
+
+</script>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/base64.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/CryptoJS.js"></script>

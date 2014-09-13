@@ -21,6 +21,8 @@ from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
 import string
+import hashlib
+import os
 
 class Tag(Object):
     pass
@@ -54,14 +56,15 @@ def place_success(request):
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
 def place_edit(request, objectId):
     place = Place.Query.get(objectId=objectId)
+    tagList = Tag.Query.relation_filter(tag__relation=place)._relation_fetch()
+    tagString = ''
+    for i in range(0, len(tagList)):
+        tagString += tagList[i]['name']
+        if i != len(tagList)-1:
+            tagString += ','
     if request.method == "GET":
         category = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()[0]
-        tagList = Tag.Query.relation_filter(tag__relation=place)._relation_fetch()
-        tagString = ''
-        for i in range(0, len(tagList)):
-            tagString += tagList[i]['name']
-            if i != len(tagList)-1:
-                tagString += ','
+
         placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation,'tags':tagString})
 
         mon_open_hour = ''
@@ -104,41 +107,39 @@ def place_edit(request, objectId):
             openHourString = openHourList[i].split(' ')[1]
             if i == 0:
                 mon_open_hour = openHourString.split('~')[0].split(':')[0]
-                mon_open_minute = openHourString.split('~')[0].split(':')[1]
+                mon_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 mon_close_hour = openHourString.split('~')[1].split(':')[0]
-                mon_close_minute = openHourString.split('~')[1].split(':')[0]
+                mon_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 1:
                 tue_open_hour = openHourString.split('~')[0].split(':')[0]
-                tue_open_minute = openHourString.split('~')[0].split(':')[1]
+                tue_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 tue_close_hour = openHourString.split('~')[1].split(':')[0]
-                tue_close_minute = openHourString.split('~')[1].split(':')[0]
+                tue_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 2:
                 wed_open_hour = openHourString.split('~')[0].split(':')[0]
-                wed_open_minute = openHourString.split('~')[0].split(':')[1]
+                wed_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 wed_close_hour = openHourString.split('~')[1].split(':')[0]
-                wed_close_minute = openHourString.split('~')[1].split(':')[0]
+                wed_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 3:
                 thur_open_hour = openHourString.split('~')[0].split(':')[0]
-                thur_open_minute = openHourString.split('~')[0].split(':')[1]
+                thur_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 thur_close_hour = openHourString.split('~')[1].split(':')[0]
-                thur_close_minute = openHourString.split('~')[1].split(':')[0]
+                thur_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 4:
                 fri_open_hour = openHourString.split('~')[0].split(':')[0]
-                fri_open_minute = openHourString.split('~')[0].split(':')[1]
+                fri_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 fri_close_hour = openHourString.split('~')[1].split(':')[0]
-                fri_close_minute = openHourString.split('~')[1].split(':')[0]
+                fri_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 5:
                 sta_open_hour = openHourString.split('~')[0].split(':')[0]
-                sta_open_minute = openHourString.split('~')[0].split(':')[1]
+                sta_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 sta_close_hour = openHourString.split('~')[1].split(':')[0]
-                sta_close_minute = openHourString.split('~')[1].split(':')[0]
+                sta_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 6:
                 sun_open_hour = openHourString.split('~')[0].split(':')[0]
-                sun_open_minute = openHourString.split('~')[0].split(':')[1]
+                sun_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
                 sun_close_hour = openHourString.split('~')[1].split(':')[0]
-                sun_close_minute = openHourString.split('~')[1].split(':')[0]
-
-        print thur_close_minute
+                sun_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
 
         return render_to_response('website/place/place_edit.html', {'Place_Form':placeForm,'objectId':objectId,'categoryObjectId':category['objectId'],
             'mon_open_hour':mon_open_hour,'mon_open_minute':mon_open_minute,'mon_close_hour':mon_close_hour,'mon_close_minute':mon_close_minute,
@@ -161,7 +162,6 @@ def place_edit(request, objectId):
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
-        place = Place()
         place.name = data.get('name')
         place.news = data.get('news')
         place.phone = data.get('phone')
@@ -209,25 +209,43 @@ def place_edit(request, objectId):
 
         place.addRelation('photos', 'Photo', photoIdList)
 
-        place.removeRelation('category', 'Category_Place', [data.get('oldCategory')])
-        place.addRelation('category', 'Category_Place', [data.get('category')])
+        if data.get('oldCategory') != data.get('category'):
+            print 'change category'
+            place.removeRelation('category', 'Category_Place', [data.get('oldCategory')])
+            place.addRelation('category', 'Category_Place', [data.get('category')])
 
-        tagNames = data.get('tags').split(',')
-        tagList = []
-        for tagName in tagNames:
-            existTags = Tag.Query.filter(name=tagName)
-            if existTags.count() == 0:
-                tag = Tag()
-                tag.name = tagName
-                tag.save()
-                tagList.append(tag.objectId)
-            else:
-                tagList.append(existTags[0].objectId)
+        if  (hashlib.md5(tagString).hexdigest().upper() != hashlib.md5(data.get('tags')).hexdigest().upper()):
+            print 'change tag'
+            oldTagIdList = []
+            for i in range(0, len(tagList)):
+                oldTagIdList.append(tagList[i]['objectId'])
+            place.removeRelation('tag', 'Tag', oldTagIdList)
 
-        if len(tagList) > 0:
-            place.addRelation('tag', 'Tag', tagList)
+            tagNames = data.get('tags').split(',')
+            tagList = []
+            for tagName in tagNames:
+                existTags = Tag.Query.filter(name=tagName)
+                if existTags.count() == 0:
+                    tag = Tag()
+                    tag.name = tagName
+                    tag.save()
+                    tagList.append(tag.objectId)
+                else:
+                    tagList.append(existTags[0].objectId)
+
+            if len(tagList) > 0:
+                place.addRelation('tag', 'Tag', tagList)
 
         return HttpResponseRedirect('/website/success')
+
+def getMinuteLevel(minute):
+    if minute == '15':
+        return 1
+    elif minute == '30':
+        return 2
+    elif minute == '45':
+        return 3
+    return 0
         
 # class PlaceDetailView(DetailView):
 #     model = PlaceModel
