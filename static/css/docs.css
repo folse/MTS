@@ -293,6 +293,9 @@ hr.soften2 {
 }
 .page-header h1 {
 	margin: 5px 0 7px 0;
+	font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
 }
 #main-nav select {
 	display: none;
@@ -431,17 +434,18 @@ hr.soften2 {
 .place th{
 	color: #61C168;
 	font-weight:900;
-	font-size: 24px;
+	font-size: 22px;
+	padding-bottom: 30px;
 }
 .place td{
 	color: #787878;
 	font-size: 22px;
-	padding-top: 20px;
+	padding-top: 18px;
 }
 .place a{
 	color: #61C168;
 	font-weight:500;
-	font-size: 20px;
+	font-size: 16px;
 }
 /* Account */
 .account {
@@ -452,16 +456,16 @@ hr.soften2 {
 	color: #787878;
 }
 .account input{
-	padding: .5em;
+	padding: .3em;
 	width: 300px;
-	height: 24px;
-	font-size: 20px;
+	height: 22px;
+	font-size: 18px;
 	font-weight: normal;
 	margin-top: 12px;
 	margin-bottom: 28px;
 }
 .account input[type=submit]{
-	height: 44px;
+	height: 38px;
 	margin-left: 0;
 	color: #ffffff;
 	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);

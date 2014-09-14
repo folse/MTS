@@ -711,7 +711,6 @@ legend small {
 }
 label, input, button, select, textarea {
 	font-size: 18px;
-	font-weight: bold;
 	line-height: 20px;
 }
 input, button, select, textarea {
@@ -767,10 +766,10 @@ input[type="radio"], input[type="checkbox"] {
 	line-height: normal;
 	cursor: pointer;
 }
-input[type="file"], input[type="image"], input[type="submit"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
+input[type="file"], input[type="image"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
 	width: 16%px;
-	height: 44px;
-	margin-left: 6px;
+	height: 24px;
+	margin: 20px;
 }
 select, input[type="file"] {
 	height: 30px;
@@ -783,12 +782,12 @@ select, input[type="file"] {
 }
 select {
 	width: 160px;
-	height: 44px;
+	height: 34px;
 	background-color: #ffffff;
 	border: 1px solid #cccccc;
 	margin-top: 12px;
 	margin-bottom: 28px;
-	font-size: 20px;
+	font-size: 16px;
 }
 select[multiple], select[size] {
 	height: auto;
@@ -2445,6 +2444,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 	background-color: #080808 \9;
 }
 button.btn, input[type="submit"].btn {
+ height: 36px;
  *padding-top: 3px;
  *padding-bottom: 3px;
 }
