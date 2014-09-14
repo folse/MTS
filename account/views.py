@@ -79,7 +79,7 @@ def register(request):
             return HttpResponseRedirect('/website')
         else:
             return render_to_response('account/register.html', {'regForm':regForm},
-                context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+                context_instance=RequestContext(request), content_type="application/xhtml+xml")
    
 def parse_signup(data):
     from parse_rest.user import User
@@ -96,7 +96,7 @@ def settings(request):
     if request.method == "GET":
         return render_to_response('account/settings.html',
          {'PasswordForm':PasswordForm()},
-        context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+        context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         form = PasswordForm(user=request.user, data=request.POST)
         if form.is_valid():
@@ -105,12 +105,12 @@ def settings(request):
         else:
             return render_to_response('account/settings.html',
                  {'PasswordForm':PasswordForm()},
-                context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+                context_instance=RequestContext(request), content_type="application/xhtml+xml")
 				
 def password_reset(request):
     if request.method == 'GET':
 		return render_to_response('account/password_reset.html', {'regForm':RegisterForm()},
-		context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+		context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         regForm = RegisterForm(request.POST)
         if regForm.is_valid():
@@ -125,5 +125,5 @@ def password_reset(request):
             return HttpResponseRedirect('/website/list')
         else:
             return render_to_response('account/register.html', {'regForm':regForm},
-                context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+                context_instance=RequestContext(request), content_type="application/xhtml+xml")
 
