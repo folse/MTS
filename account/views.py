@@ -57,7 +57,7 @@ def login(request, template_name='account/login.html',
 def register(request):
     if request.method == 'GET':
         return render_to_response('account/register.html', {'regForm':RegisterForm()},
-            context_instance=RequestContext(request), mimetype="application/xhtml+xml")
+            context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         regForm = RegisterForm(request.POST)
         if regForm.is_valid():
