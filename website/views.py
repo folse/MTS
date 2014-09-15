@@ -177,35 +177,39 @@ def place_edit(request, objectId):
         photoIdList = []
         menuPhotoUrls = data.get('menu_photo').split(',')
         for photoUrl in menuPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.menu_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.menu_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         productPhotoUrls = data.get('product_photo').split(',')
         for photoUrl in productPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.product_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.product_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         environmentPhotoUrls = data.get('environment_photo').split(',')
         for photoUrl in environmentPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.environment_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.environment_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         otherPhotoUrls = data.get('other_photo').split(',')
         for photoUrl in otherPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.other_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.other_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         place.addRelation('photos', 'Photo', photoIdList)
 
@@ -291,35 +295,39 @@ def place_add(request):
         photoIdList = []
         menuPhotoUrls = data.get('menu_photo').split(',')
         for photoUrl in menuPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.menu_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.menu_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         productPhotoUrls = data.get('product_photo').split(',')
         for photoUrl in productPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.product_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.product_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         environmentPhotoUrls = data.get('environment_photo').split(',')
         for photoUrl in environmentPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.environment_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.environment_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         otherPhotoUrls = data.get('other_photo').split(',')
         for photoUrl in otherPhotoUrls :
-            photo = Photo()
-            photo.url = photoUrl
-            photo.other_category = True
-            photo.save()
-            photoIdList.append(photo.objectId)
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.other_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
 
         place.addRelation('photos', 'Photo', photoIdList)
         
