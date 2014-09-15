@@ -14,7 +14,6 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView
 
 from forms import Place_Form
-from models import PlaceModel
 
 from parse_rest.user import User
 from parse_rest.connection import register
@@ -252,7 +251,6 @@ def getMinuteLevel(minute):
     return 0
         
 # class PlaceDetailView(DetailView):
-#     model = PlaceModel
 #     fields = ['name']
 #     template_name_suffix = '_edit'
 #     def get_queryset(self,pk):
