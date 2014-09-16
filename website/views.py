@@ -36,8 +36,8 @@ class Relation(Object):
     pass
 
 class Place(Object):
-	#register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
-	#print 'parse register'
+    # register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
+    # print 'parse register'
     pass
 
 class PlaceListView(ListView):

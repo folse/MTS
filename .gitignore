@@ -56,3 +56,5 @@ docs/_build/
 *.espressostorage
 
 db.sqlite3
+
+mts.esproj/user.folse.espressostorage
