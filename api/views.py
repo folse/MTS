@@ -7,6 +7,11 @@ from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
+
 class Photo(Object):
 	pass
 

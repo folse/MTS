@@ -15,6 +15,10 @@ from models import User_Profile
 
 from forms import RegisterForm, PasswordForm
 import re
+import sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 @never_cache
 def login(request, template_name='account/login.html',
