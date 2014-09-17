@@ -66,7 +66,7 @@ def register(request):
             #Parse Signup
             userObjectId = parse_signup(data)
 
-            user = User.objects.create_user(data['username'], data['email'], data['password'])
+            user = User.objects.create_user(data['username'].lower(), data['email'], data['password'])
             user.email, user.is_staff, user.is_active, user.is_superuser = data['email'], True, True, False
             user_profile = User_Profile(user=user)
             user_profile.objectId, user_profile.description, user_profile.userType = userObjectId, '', 1 

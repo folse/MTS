@@ -1,6 +1,23 @@
 {% extends 'base.html' %}
 {% block title %}Sign up{% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+<script type="text/javascript">   
+  
+  function checkUser()   
+  {  
+      var usernameVal = document.getElementById("id_username").value;  
+    
+      usertipsSpan = document.getElementById("usertips");  
+        
+      if (!usernameVal.match( /^[a-z0-9]*$/)) {  
+          usertipsSpan.innerHTML=" Only support numbers and english lower characters";
+          return false;  
+      } else {  
+          usertipsSpan.innerHTML='';
+      }
+  }
+</script>
+{% endblock %}
 {% block content %}
 {% load staticfiles %}
 <div class="container">
@@ -18,19 +35,31 @@
     <div class="account">
         <form action="." method="post">
           <table>
-            {% for field in regForm %}
             <tr>
-              <td><label>{{field.label_tag}}</label></td>
+              <td><label><label for="id_username">Username:</label></label></td>
             </tr>
             <tr>
-              <td>{{field}} <span class="errinfo">{% if field.errors %}{{ field.errors.as_text }}{% else %}{{ field.help_text }}{% endif %}</span></td>
+              <td><input onblur="checkUser()" id="id_username" maxlength="30" name="username" type="text" /> <span class="errinfo" id="usertips"></span> <span class="errinfo"> </span></td>
             </tr>
-            {% endfor %}
+            
+            <tr>
+              <td><label><label for="id_password">Password:</label></label></td>
+            </tr>
+            <tr>
+              <td><input id="id_password" maxlength="24" name="password" type="password" /> <span class="errinfo"> </span></td>
+            </tr>
+            
+            <tr>
+              <td><label><label for="id_email">Email:</label></label></td>
+            </tr>
+            <tr>
+              <td><input id="id_email" maxlength="72" name="email" type="email" /> <span class="errinfo"> </span></td>
+            </tr>
             <tr>
               <td><label>Agree with <a href="{% static "terms.html" %}" target="_blank" style="text-decoration:none" class="link">User Terms</a></label></td>
             </tr>
             <tr>
-              <td colspan="2" align="center"><input type="submit" value="Sign up" class="btn" /></td>
+              <td colspan="2" align="center"><input type="submit" value="Sign up" class="btn" onClick='checkUser()'/></td>
             </tr>
           </table>
         </form>
