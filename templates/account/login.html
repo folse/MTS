@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+<script type="text/javascript">   
+  
+  function checkUser()   
+  {  
+      var usernameVal = document.getElementById("id_username").value;  
+    
+      usertipsSpan = document.getElementById("usertips");  
+        
+      if (!usernameVal.match( /^[a-z0-9]*$/)) {  
+          usertipsSpan.innerHTML=" Only support numbers and english lower characters";
+          return false;  
+      } else {  
+          usertipsSpan.innerHTML='';
+      }
+  }
+</script>
+{% endblock %}
 {% block content %}
 <div class="container">
     <div class="row-fluid">
@@ -33,13 +50,13 @@
                 <td><label>Username:</label></td>
             </tr>
             <tr>
-                <td>{{form.username}}</td>
+                <td><input onblur="checkUser()" id="id_username" maxlength="254" name="username" type="text"/><span class="errinfo" id="usertips"></span></td>
             </tr>
             <tr>
                 <td><label>Password:</label></td>
             </tr>
             <tr>
-                <td>{{form.password}}</td>
+                <td><input id="id_password" name="password" type="password" /></td>
             </tr>
             <tr>
                 <td colspan="2" align="center">
