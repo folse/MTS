@@ -64,7 +64,7 @@ def place_edit(request, objectId):
     if request.method == "GET":
         category = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()[0]
 
-        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'take_away':place.takeaway, 'tags':tagString})
+        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'delivery':place.delivery, 'tags':tagString})
 
         mon_open_hour = ''
         mon_open_minute = ''
@@ -170,7 +170,7 @@ def place_edit(request, objectId):
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
-        place.takeaway = bool(data.get('take_away'))
+        place.delivery = bool(data.get('delivery'))
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
@@ -290,7 +290,7 @@ def place_add(request):
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
-        place.takeaway = bool(data.get('take_away'))
+        place.delivery = bool(data.get('delivery'))
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
