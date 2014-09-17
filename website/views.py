@@ -21,7 +21,10 @@ from parse_rest.datatypes import Object, GeoPoint
 
 import string
 import hashlib
-import os
+import os,sys
+
+reload(sys)
+sys.setdefaultencoding('utf-8')
 
 class Tag(Object):
     pass
