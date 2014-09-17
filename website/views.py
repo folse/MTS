@@ -64,7 +64,7 @@ def place_edit(request, objectId):
     if request.method == "GET":
         category = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()[0]
 
-        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation,'tags':tagString})
+        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'take_away':place.takeaway, 'tags':tagString})
 
         mon_open_hour = ''
         mon_open_minute = ''
@@ -225,17 +225,19 @@ def place_edit(request, objectId):
                 oldTagIdList.append(tagList[i]['objectId'])
             place.removeRelation('tag', 'Tag', oldTagIdList)
 
-            tagNames = data.get('tags').split(',')
-            tagList = []
-            for tagName in tagNames:
-                existTags = Tag.Query.filter(name=tagName)
-                if existTags.count() == 0:
-                    tag = Tag()
-                    tag.name = tagName.lower()
-                    tag.save()
-                    tagList.append(tag.objectId)
-                else:
-                    tagList.append(existTags[0].objectId)
+            if data.get('tags') != '':
+                tagNames = data.get('tags').split(',')
+                tagList = []
+                for tagName in tagNames:
+                    if tagName != '':
+                        existTags = Tag.Query.filter(name=tagName)
+                        if existTags.count() == 0:
+                            tag = Tag()
+                            tag.name = tagName.lower()
+                            tag.save()
+                            tagList.append(tag.objectId)
+                        else:
+                            tagList.append(existTags[0].objectId)
 
             if len(tagList) > 0:
                 place.addRelation('tag', 'Tag', tagList)
@@ -339,20 +341,22 @@ def place_add(request):
         if category:
         	place.addRelation('category', 'Category_Place', [data.get('category')])
 
-        tagNames = data.get('tags').split(',')
-        tagList = []
-        for tagName in tagNames:
-            existTags = Tag.Query.filter(name=tagName)
-            if existTags.count() == 0:
-                tag = Tag()
-                tag.name = tagName.lower()
-                tag.save()
-                tagList.append(tag.objectId)
-            else:
-                tagList.append(existTags[0].objectId)
+        if data.get('tags') != '':
+            tagNames = data.get('tags').split(',')
+            tagList = []
+            for tagName in tagNames:
+                if tagName != '':
+                    existTags = Tag.Query.filter(name=tagName)
+                    if existTags.count() == 0:
+                        tag = Tag()
+                        tag.name = tagName.lower()
+                        tag.save()
+                        tagList.append(tag.objectId)
+                    else:
+                        tagList.append(existTags[0].objectId)
 
-        if len(tagList) > 0:
-            place.addRelation('tag', 'Tag', tagList)
+            if len(tagList) > 0:
+                place.addRelation('tag', 'Tag', tagList)
 
         return HttpResponseRedirect('/website/success')
 
