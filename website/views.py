@@ -170,6 +170,7 @@ def place_edit(request, objectId):
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
+        place.takeaway = bool(data.get('take_away'))
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
@@ -230,7 +231,7 @@ def place_edit(request, objectId):
                 existTags = Tag.Query.filter(name=tagName)
                 if existTags.count() == 0:
                     tag = Tag()
-                    tag.name = tagName
+                    tag.name = tagName.lower()
                     tag.save()
                     tagList.append(tag.objectId)
                 else:
@@ -287,6 +288,7 @@ def place_add(request):
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
+        place.takeaway = bool(data.get('take_away'))
         #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
         place.save()
 
@@ -343,7 +345,7 @@ def place_add(request):
             existTags = Tag.Query.filter(name=tagName)
             if existTags.count() == 0:
                 tag = Tag()
-                tag.name = tagName
+                tag.name = tagName.lower()
                 tag.save()
                 tagList.append(tag.objectId)
             else:

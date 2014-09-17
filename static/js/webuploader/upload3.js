@@ -29,7 +29,7 @@
             // 没选择文件之前的内容。
             $placeHolder = $wrap.find( '.placeholder' ),
 
-            $progress = $statusBar.find( '.progress' ).hide(),
+            $progress = $statusBar.find( '.progress3' ).hide(),
 
             // 添加的文件数量
             fileCount = 0,
@@ -261,7 +261,7 @@
                     '<span class="cancel">删除</span>' +
                     '<span class="rotateRight">向右旋转</span>' +
                     '<span class="rotateLeft">向左旋转</span></div>').appendTo( $li ),
-                $prgress = $li.find('p.progress span'),
+                $prgress = $li.find('p.progress3 span'),
                 $wrap = $li.find( 'p.imgWrap' ),
                 $info = $('<p class="error"></p>'),
 
@@ -480,6 +480,7 @@
                     break;
 
                 case 'ready':
+                    console.log($progress);
                     $placeHolder.addClass( 'element-invisible' );
                     $( '#filePicker4' ).removeClass( 'element-invisible');
                     $queue.show();
@@ -526,7 +527,7 @@
 
         uploader.onUploadProgress = function( file, percentage ) {
             var $li = $('#'+file.id),
-                $percent = $li.find('.progress span');
+                $percent = $li.find('.progress3 span');
 
             $percent.css( 'width', percentage * 100 + '%' );
             percentages[ file.id ][ 1 ] = percentage;

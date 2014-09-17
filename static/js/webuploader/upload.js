@@ -520,6 +520,7 @@
                     break;
 
                 case 'ready':
+                    console.log('ready');
                     $placeHolder.addClass( 'element-invisible' );
                     $( '#filePicker2' ).removeClass( 'element-invisible');
                     $queue.show();

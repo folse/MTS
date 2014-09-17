@@ -25,5 +25,6 @@ class Place_Form(forms.Form):
 	has_park = forms.BooleanField(label='Parking Place Available', required=False, help_text='')
 	has_alcohol = forms.BooleanField(label='Serve Alcohol Drinks', required=False, help_text='')
 	phone_reservation = forms.BooleanField(label='Phone Reservation', required=False, help_text='')
+	take_away = forms.BooleanField(label='Support Take-Away', required=False, help_text='')
 	news = forms.CharField(max_length=512, label='News', required=False, widget=forms.Textarea, help_text='max 512 characters')
 	description = forms.CharField(max_length=512, label='Description', required=False, widget=forms.Textarea, help_text='max 512 characters')
