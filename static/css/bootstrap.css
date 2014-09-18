@@ -416,7 +416,7 @@ a:hover {
 .container {
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 10%;
+	margin-bottom: 20%;
  *zoom: 1;
 }
 .container:before, .container:after {
