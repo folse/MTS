@@ -416,7 +416,6 @@ a:hover {
 .container {
 	margin-right: auto;
 	margin-left: auto;
-	margin-bottom: 20%;
  *zoom: 1;
 }
 .container:before, .container:after {
@@ -2446,6 +2445,7 @@ input[type="submit"].btn-block, input[type="reset"].btn-block, input[type="butto
 }
 button.btn, input[type="submit"].btn {
  height: 36px;
+ margin-bottom: 30%;
  *padding-top: 3px;
  *padding-bottom: 3px;
 }
