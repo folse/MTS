@@ -69,79 +69,96 @@ def place_edit(request, objectId):
 
         placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'delivery':place.delivery, 'tags':tagString})
 
-        mon_open_hour = ''
-        mon_open_minute = ''
-        mon_close_hour = ''
-        mon_close_minute = ''
+        mon_open_hour,mon_open_minute,mon_close_hour,mon_close_minute = '','','',''
 
-        tue_open_hour = ''
-        tue_open_minute = ''
-        tue_close_hour = ''
-        tue_close_minute = ''
+        tue_open_hour,tue_open_minute,tue_close_hour,tue_close_minute = '','','',''
 
-        wed_open_hour = ''
-        wed_open_minute = ''
-        wed_close_hour = ''
-        wed_close_minute = ''
+        wed_open_hour,wed_open_minute,wed_close_hour,wed_close_minute = '','','',''
 
-        thur_open_hour = ''
-        thur_open_minute = ''
-        thur_close_hour = ''
-        thur_close_minute = ''
+        thur_open_hour,thur_open_minute,thur_close_hour,thur_close_minute = '','','',''
 
-        fri_open_hour = ''
-        fri_open_minute = ''
-        fri_close_hour = ''
-        fri_close_minute = ''
+        fri_open_hour,fri_open_minute,fri_close_hour,fri_close_minute = '','','',''
 
-        sta_open_hour = ''
-        sta_open_minute = ''
-        sta_close_hour = ''
-        sta_close_minute = ''
+        sta_open_hour,sta_open_minute,sta_close_hour,sta_close_minute = '','','',''
 
-        sun_open_hour = ''
-        sun_open_minute = ''
-        sun_close_hour = ''
-        sun_close_minute = ''
+        sun_open_hour,sun_open_minute,sun_close_hour,sun_close_minute = '','','',''
+
+        mon_closed,tue_closed,wed_closed,thur_closed,fri_closed,sta_closed,sun_closed = 'off','off','off','off','off','off','off'
 
         openHourList = place.open_hour.split('\n')
         for i in range(0, len(openHourList)):
             openHourString = openHourList[i].split(' ')[1]
             if i == 0:
-                mon_open_hour = openHourString.split('~')[0].split(':')[0]
-                mon_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                mon_close_hour = openHourString.split('~')[1].split(':')[0]
-                mon_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    mon_open_hour,mon_close_hour = '0','24'
+                    mon_close_minute,mon_open_minute = '0','0'
+                    mon_closed = 'on'
+                else:
+                    mon_open_hour = openHourString.split('~')[0].split(':')[0]
+                    mon_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    mon_close_hour = openHourString.split('~')[1].split(':')[0]
+                    mon_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 1:
-                tue_open_hour = openHourString.split('~')[0].split(':')[0]
-                tue_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                tue_close_hour = openHourString.split('~')[1].split(':')[0]
-                tue_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    tue_open_hour,tue_close_hour = '0','24'
+                    tue_close_minute,tue_open_minute = '0','0'
+                    tue_closed = 'on'
+                else:
+                    tue_open_hour = openHourString.split('~')[0].split(':')[0]
+                    tue_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    tue_close_hour = openHourString.split('~')[1].split(':')[0]
+                    tue_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                    print tue_open_hour
             elif i == 2:
-                wed_open_hour = openHourString.split('~')[0].split(':')[0]
-                wed_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                wed_close_hour = openHourString.split('~')[1].split(':')[0]
-                wed_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    wed_open_hour,wed_close_hour = '0','24'
+                    wed_close_minute,wed_open_minute = '0','0'
+                    wed_closed = 'on'
+                else:
+                    wed_open_hour = openHourString.split('~')[0].split(':')[0]
+                    wed_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    wed_close_hour = openHourString.split('~')[1].split(':')[0]
+                    wed_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 3:
-                thur_open_hour = openHourString.split('~')[0].split(':')[0]
-                thur_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                thur_close_hour = openHourString.split('~')[1].split(':')[0]
-                thur_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    thur_open_hour,thur_close_hour = '0','24'
+                    thur_close_minute,thur_open_minute = '0','0'
+                    thur_closed = 'on'
+                else:
+                    thur_open_hour = openHourString.split('~')[0].split(':')[0]
+                    thur_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    thur_close_hour = openHourString.split('~')[1].split(':')[0]
+                    thur_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 4:
-                fri_open_hour = openHourString.split('~')[0].split(':')[0]
-                fri_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                fri_close_hour = openHourString.split('~')[1].split(':')[0]
-                fri_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    fri_open_hour,fri_close_hour = '0','24'
+                    fri_close_minute,fri_open_minute = '0','0'
+                    fri_closed = 'on'
+                else:
+                    fri_open_hour = openHourString.split('~')[0].split(':')[0]
+                    fri_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    fri_close_hour = openHourString.split('~')[1].split(':')[0]
+                    fri_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 5:
-                sta_open_hour = openHourString.split('~')[0].split(':')[0]
-                sta_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                sta_close_hour = openHourString.split('~')[1].split(':')[0]
-                sta_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    sta_open_hour,sta_close_hour = '0','24'
+                    sta_close_minute,sta_open_minute = '0','0'
+                    sta_closed = 'on'
+                else:
+                    sta_open_hour = openHourString.split('~')[0].split(':')[0]
+                    sta_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    sta_close_hour = openHourString.split('~')[1].split(':')[0]
+                    sta_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
             elif i == 6:
-                sun_open_hour = openHourString.split('~')[0].split(':')[0]
-                sun_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
-                sun_close_hour = openHourString.split('~')[1].split(':')[0]
-                sun_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
+                if openHourString == 'Closed':
+                    sun_open_hour,sun_close_hour = '0','24'
+                    sun_close_minute,sun_open_minute = '0','0'
+                    sun_closed = 'on'
+                else:
+                    sun_open_hour = openHourString.split('~')[0].split(':')[0]
+                    sun_open_minute = getMinuteLevel(openHourString.split('~')[0].split(':')[1])
+                    sun_close_hour = openHourString.split('~')[1].split(':')[0]
+                    sun_close_minute = getMinuteLevel(openHourString.split('~')[1].split(':')[1])
 
         return render_to_response('website/place/place_edit.html', {'Place_Form':placeForm,'objectId':objectId,'categoryObjectId':category['objectId'],
             'mon_open_hour':mon_open_hour,'mon_open_minute':mon_open_minute,'mon_close_hour':mon_close_hour,'mon_close_minute':mon_close_minute,
@@ -150,11 +167,11 @@ def place_edit(request, objectId):
             'thur_open_hour':thur_open_hour,'thur_open_minute':thur_open_minute,'thur_close_hour':thur_close_hour,'thur_close_minute':thur_close_minute,
             'fri_open_hour':fri_open_hour,'fri_open_minute':fri_open_minute,'fri_close_hour':fri_close_hour,'fri_close_minute':fri_close_minute,
             'sta_open_hour':sta_open_hour,'sta_open_minute':sta_open_minute,'sta_close_hour':sta_close_hour,'sta_close_minute':sta_close_minute,
-            'sun_open_hour':sun_open_hour,'sun_open_minute':sun_open_minute,'sun_close_hour':sun_close_hour,'sun_close_minute':sun_close_minute},
+            'sun_open_hour':sun_open_hour,'sun_open_minute':sun_open_minute,'sun_close_hour':sun_close_hour,'sun_close_minute':sun_close_minute,
+            'mon_closed':mon_closed,'tue_closed':tue_closed,'wed_closed':wed_closed,'thur_closed':thur_closed,'fri_closed':fri_closed,'sta_closed':sta_closed,'sun_closed':sun_closed},
         context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
         data = request.POST
-        #form = Add_Place_Form(data)
         mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute') + '\n'
         tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '\n'
         wed_open_hour = 'Wed ' + data.get('wed_open_hour') + ':' + data.get('wed_open_minute') + '~' + data.get('wed_close_hour') + ':' + data.get('wed_close_minute') + '\n'
@@ -162,6 +179,28 @@ def place_edit(request, objectId):
         fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '\n'
         sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
+        
+        if mon_open_hour.find('0:00~0:00') >= 0:
+            mon_open_hour = 'Mon Closed\n'
+
+        if tue_open_hour.find('0:00~0:00') >= 0:
+            tue_open_hour = 'Tue Closed\n'
+
+        if wed_open_hour.find('0:00~0:00') >= 0:
+            wed_open_hour = 'Wed Closed\n'
+
+        if thur_open_hour.find('0:00~0:00') >= 0:
+            thur_open_hour = 'Thur Closed\n'
+
+        if fri_open_hour.find('0:00~0:00') >= 0:
+            fri_open_hour = 'Fri Closed\n'
+
+        if sta_open_hour.find('0:00~0:00') >= 0:
+            sta_open_hour = 'Sta Closed\n'
+
+        if sun_open_hour.find('0:00~0:00') >= 0:
+            sun_open_hour = 'Sun Closed'
+
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
         place.name = data.get('name')
@@ -281,6 +320,28 @@ def place_add(request):
         fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '\n'
         sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
+        
+        if mon_open_hour.find('0:00~0:00') >= 0:
+            mon_open_hour = 'Mon Closed\n'
+
+        if tue_open_hour.find('0:00~0:00') >= 0:
+            tue_open_hour = 'Tue Closed\n'
+
+        if wed_open_hour.find('0:00~0:00') >= 0:
+            wed_open_hour = 'Wed Closed\n'
+
+        if thur_open_hour.find('0:00~0:00') >= 0:
+            thur_open_hour = 'Thur Closed\n'
+
+        if fri_open_hour.find('0:00~0:00') >= 0:
+            fri_open_hour = 'Fri Closed\n'
+
+        if sta_open_hour.find('0:00~0:00') >= 0:
+            sta_open_hour = 'Sta Closed\n'
+
+        if sun_open_hour.find('0:00~0:00') >= 0:
+            sun_open_hour = 'Sun Closed'
+
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
         place = Place()
