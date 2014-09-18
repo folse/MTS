@@ -76,6 +76,10 @@ body > .navbar .brand:hover {
 	height: 36px;
 	margin-left: -152px;
 }
+.check_label {
+	width: 120px;
+	height: 26px;
+}
 
 /* Sections
 -------------------------------------------------- */

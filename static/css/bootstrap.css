@@ -767,9 +767,9 @@ input[type="radio"], input[type="checkbox"] {
 	cursor: pointer;
 }
 input[type="file"], input[type="image"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
-	width: 16%px;
 	height: 24px;
-	margin: 20px;
+	vertical-align: bottom;
+	margin-left: -80px;
 }
 select, input[type="file"] {
 	height: 30px;

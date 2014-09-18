@@ -4,6 +4,56 @@
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style3.css"/>
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style5.css"/>
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style7.css"/>
+<script type="text/javascript">   
+  
+    function setClosedDay(ev)   
+    {  
+        var target = ev.srcElement || ev.target;
+
+        console.log(target.id);
+
+        var isClosed = target.value;
+
+        if (isClosed == "on") {
+            if (target.id == "mon_closed") {  
+                document.getElementById('mon_open_hour').options[0].selected=true;
+                document.getElementById('mon_open_minute').options[0].selected=true;
+                document.getElementById('mon_close_hour').options[24].selected=true; 
+                document.getElementById('mon_close_minute').options[0].selected=true;
+            }else if (target.id == "tue_closed") {  
+                document.getElementById('tue_open_hour').options[0].selected=true;
+                document.getElementById('tue_open_minute').options[0].selected=true;
+                document.getElementById('tue_close_hour').options[24].selected=true; 
+                document.getElementById('tue_close_minute').options[0].selected=true;
+            }else if (target.id == "wed_closed") {  
+                document.getElementById('wed_open_hour').options[0].selected=true;
+                document.getElementById('wed_open_minute').options[0].selected=true;
+                document.getElementById('wed_close_hour').options[24].selected=true; 
+                document.getElementById('wed_close_minute').options[0].selected=true;
+            }else if (target.id == "thur_closed") {  
+                document.getElementById('thur_open_hour').options[0].selected=true;
+                document.getElementById('thur_open_minute').options[0].selected=true;
+                document.getElementById('thur_close_hour').options[24].selected=true; 
+                document.getElementById('thur_close_minute').options[0].selected=true;
+            }else if (target.id == "fri_closed") {  
+                document.getElementById('fri_open_hour').options[0].selected=true;
+                document.getElementById('fri_open_minute').options[0].selected=true;
+                document.getElementById('fri_close_hour').options[24].selected=true; 
+                document.getElementById('fri_close_minute').options[0].selected=true;
+            }else if (target.id == "sta_closed") {  
+                document.getElementById('sta_open_hour').options[0].selected=true;
+                document.getElementById('sta_open_minute').options[0].selected=true;
+                document.getElementById('sta_close_hour').options[24].selected=true; 
+                document.getElementById('sta_close_minute').options[0].selected=true;
+            }else if (target.id == "sun_closed") {  
+                document.getElementById('sun_open_hour').options[0].selected=true;
+                document.getElementById('sun_open_minute').options[0].selected=true;
+                document.getElementById('sun_close_hour').options[24].selected=true; 
+                document.getElementById('sun_close_minute').options[0].selected=true;
+            }
+        };
+    }
+</script>
 {% endblock %}
 {% block content %}
 {% load staticfiles %}
@@ -153,6 +203,7 @@
                     <td><label for="fname">Monday Open:</label></td>
                     <td>
                         <select name="mon_open_hour" id="mon_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -191,30 +242,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="mon_close_hour" id="mon_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -226,11 +278,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="mon_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
                 <tr>
                     <td><label for="fname">Tuesday Open:</label></td>
                     <td>
                         <select name="tue_open_hour" id="tue_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -269,30 +324,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="tue_close_hour" id="tue_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -304,11 +360,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="tue_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
-                                    <tr>
+                <tr>
                     <td><label for="fname">Wednesday Open:</label></td>
                     <td>
                         <select name="wed_open_hour" id="wed_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -347,30 +406,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="wed_close_hour" id="wed_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -382,11 +442,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="wed_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
-                                    <tr>
+                <tr>
                     <td><label for="fname">Thursday Open:</label></td>
                     <td>
                         <select name="thur_open_hour" id="thur_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -425,30 +488,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="thur_close_hour" id="thur_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -460,11 +524,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="thur_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
-                                    <tr>
+                <tr>
                     <td><label for="fname">Friday Open:</label></td>
                     <td>
                         <select name="fri_open_hour" id="fri_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -503,30 +570,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="fri_close_hour" id="fri_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -538,11 +606,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="fri_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
-                                    <tr>
+                <tr>
                     <td><label for="fname">Saturday Open:</label></td>
                     <td>
                         <select name="sta_open_hour" id="sta_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -581,30 +652,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="sta_close_hour" id="sta_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -616,11 +688,14 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="sta_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
-                                    <tr>
+                <tr>
                     <td><label for="fname">Sunday Open:</label></td>
                     <td>
                         <select name="sun_open_hour" id="sun_open_hour" class='open-hour'>
+                            <option>0</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -659,30 +734,31 @@
                     <td><label class="close-label">Close:</label></td>
                     <td>
                         <select name="sun_close_hour" id="sun_close_hour" class='close-hour'>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                            <option>6</option>
-                            <option>7</option>
-                            <option>8</option>
-                            <option>9</option>
-                            <option>10</option>
-                            <option>11</option>
-                            <option>12</option>
-                            <option>13</option>
-                            <option>14</option>
-                            <option>15</option>
-                            <option>16</option>
-                            <option>17</option>
-                            <option>18</option>
-                            <option>19</option>
-                            <option>20</option>
-                            <option>21</option>
-                            <option>22</option>
-                            <option>23</option>
                             <option>24</option>
+                            <option>23</option>
+                            <option>22</option>
+                            <option>21</option>
+                            <option>20</option>
+                            <option>19</option>
+                            <option>18</option>
+                            <option>17</option>
+                            <option>16</option>
+                            <option>15</option>
+                            <option>14</option>
+                            <option>13</option>
+                            <option>12</option>
+                            <option>11</option>
+                            <option>10</option>
+                            <option>9</option>
+                            <option>8</option>
+                            <option>7</option>
+                            <option>6</option>
+                            <option>5</option>
+                            <option>4</option>
+                            <option>3</option>
+                            <option>2</option>
+                            <option>1</option>
+                            <option>0</option>
                         </select>
                         <strong>：</strong>
                     </td>
@@ -694,6 +770,8 @@
                             <option>45</option>
                         </select>
                     </td>
+                    <td><label class="check_label">Closed All Day:</label></td>
+                    <td><input id="sun_closed" type="checkbox" onclick="javascript:setClosedDay(event)"/></td>
                 </tr>
                 <p>&nbsp;</p>
                 <p>&nbsp;</p>
