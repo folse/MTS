@@ -769,7 +769,7 @@ input[type="radio"], input[type="checkbox"] {
 input[type="file"], input[type="image"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
 	height: 24px;
 	vertical-align: bottom;
-	margin-left: -80px;
+	margin-left: -10px;
 }
 select, input[type="file"] {
 	height: 30px;
