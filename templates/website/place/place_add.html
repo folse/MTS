@@ -4,13 +4,65 @@
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style3.css"/>
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style5.css"/>
 <link rel="stylesheet" type="text/css" href="/static/css/webuploader/style7.css"/>
-<script type="text/javascript">   
+<script type="text/javascript" charset="utf-8">   
+
+    var xmlHttp;
+    function createXMLHttpRequest()
+    {
+        if(window.ActiveXObject)
+        {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        else if(window.XMLHttpRequest)
+        {
+            xmlHttp = new XMLHttpRequest();
+        }
+    }
+
+    function checkNameAddress()
+    {
+        createXMLHttpRequest();
+        try
+        {   
+            var placeName = "Netto";
+            var placeAddress = document.getElementById('id_address').value;
+            console.log(placeAddress);
+
+            var place = new Object();
+            //place.name = placeName;
+            place.address = placeAddress;
+
+            var parameter = escape(JSON.stringify(place));
+            console.log(parameter);
+            xmlHttp.onreadystatechange = handleStateChange;
+            xmlHttp.open("GET", "https://api.parse.com/1/classes/Place?where="+parameter, true);
+            xmlHttp.setRequestHeader("X-Parse-Application-Id","MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5");
+            xmlHttp.setRequestHeader("X-Parse-REST-API-Key","44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC");
+            xmlHttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xmlHttp.send('');
+        }
+        catch(exception)
+        {
+            alert(exception);
+        }
+    }
+
+    function handleStateChange()
+    {  
+        if(xmlHttp.readyState == 4)
+        {      
+            if (xmlHttp.status == 200 || xmlHttp.status == 0)
+            {
+                var returnData = xmlHttp.responseText;
+                json = eval("("+returnData+")");
+                console.log(json['results'].length);
+            }
+        }
+    }
   
     function setClosedDay(ev)   
     {  
         var target = ev.srcElement || ev.target;
-
-        console.log(target.id);
 
         var isClosed = target.value;
 
@@ -784,6 +836,11 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+
+    document.getElementById('id_address').setAttribute("onblur","checkNameAddress()");
+
+</script>
 <script type="text/javascript" src="/static/js/jquery.js"></script>
 <script type="text/javascript" src="/static/js/base64.js"></script>
 <script type="text/javascript" src="/static/js/webuploader/CryptoJS.js"></script>
