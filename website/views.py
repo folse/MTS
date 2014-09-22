@@ -344,22 +344,25 @@ def place_add(request):
 
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
-        place = Place()
-        place.name = data.get('name')
-        place.news = data.get('news')
-        place.phone = data.get('phone')
-        place.address = data.get('address')
-        place.open_hour = open_hour
-        place.description = data.get('description')
-        place.has_park = bool(data.get('has_park'))
-        place.has_alcohol = bool(data.get('has_alcohol'))
-        place.phone_reservation = bool(data.get('phone_reservation'))
-        place.delivery = bool(data.get('delivery'))
-        #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
-        place.save()
-
+        avatarUrl = ''
         photoIdList = []
+
+        otherPhotoUrls = data.get('other_photo').split(',')
+        if otherPhotoUrls[0] != '0':
+            avatarUrl = otherPhotoUrls[0]
+
+        for photoUrl in otherPhotoUrls :
+            if photoUrl != '0':
+                photo = Photo()
+                photo.url = photoUrl
+                photo.other_category = True
+                photo.save()
+                photoIdList.append(photo.objectId)
+
         menuPhotoUrls = data.get('menu_photo').split(',')
+        if menuPhotoUrls[0] != '0':
+            avatarUrl = menuPhotoUrls[0]
+
         for photoUrl in menuPhotoUrls :
             if photoUrl != '0':
                 photo = Photo()
@@ -369,6 +372,9 @@ def place_add(request):
                 photoIdList.append(photo.objectId)
 
         productPhotoUrls = data.get('product_photo').split(',')
+        if productPhotoUrls[0] != '0':
+            avatarUrl = productPhotoUrls[0]
+
         for photoUrl in productPhotoUrls :
             if photoUrl != '0':
                 photo = Photo()
@@ -378,6 +384,9 @@ def place_add(request):
                 photoIdList.append(photo.objectId)
 
         environmentPhotoUrls = data.get('environment_photo').split(',')
+        if environmentPhotoUrls[0] != '0':
+            avatarUrl = environmentPhotoUrls[0]
+            
         for photoUrl in environmentPhotoUrls :
             if photoUrl != '0':
                 photo = Photo()
@@ -386,14 +395,20 @@ def place_add(request):
                 photo.save()
                 photoIdList.append(photo.objectId)
 
-        otherPhotoUrls = data.get('other_photo').split(',')
-        for photoUrl in otherPhotoUrls :
-            if photoUrl != '0':
-                photo = Photo()
-                photo.url = photoUrl
-                photo.other_category = True
-                photo.save()
-                photoIdList.append(photo.objectId)
+        place = Place()
+        place.name = data.get('name')
+        place.news = data.get('news')
+        place.phone = data.get('phone')
+        place.address = data.get('address')
+        place.avatar = avatarUrl
+        place.open_hour = open_hour
+        place.description = data.get('description')
+        place.has_park = bool(data.get('has_park'))
+        place.has_alcohol = bool(data.get('has_alcohol'))
+        place.phone_reservation = bool(data.get('phone_reservation'))
+        place.delivery = bool(data.get('delivery'))
+        #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
+        place.save()
 
         place.addRelation('photos', 'Photo', photoIdList)
         
