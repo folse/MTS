@@ -46,7 +46,7 @@ class Place(Object):
 class PlaceListView(ListView):
     template_name = 'website/place/place_list.html'
     def get_queryset(self):
-        places = Place.Query.all().filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(100).order_by("-updatedAt")
+        places = Place.Query.all().filter(user=User.Query.get(objectId=self.request.user.user_profile.objectId)).limit(200).order_by("-updatedAt")
         return places
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
