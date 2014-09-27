@@ -21,7 +21,7 @@ from parse_rest.datatypes import Object, GeoPoint
 
 import string
 import hashlib
-import os,sys
+import os,sys,urllib,urllib2,json
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -203,6 +203,19 @@ def place_edit(request, objectId):
 
         open_hour = mon_open_hour + tue_open_hour + wed_open_hour + thur_open_hour + fri_open_hour + sta_open_hour + sun_open_hour
 
+
+        address = urllib.urlencode({'address': data.get('address')}) 
+        get_address_url = 'http://maps.googleapis.com/maps/api/geocode/json?'+ address +'&sensor=false'
+        location_response = urllib2.urlopen(get_address_url).read()
+        location_data = json.loads(location_response)
+        results = location_data['results']
+        if len(results) > 0:
+            location = results[0]['geometry']['location']
+            lat = location['lat']
+            lng = location['lng']
+        else:
+            lat,lng = 0,0
+
         place.name = data.get('name')
         place.news = data.get('news')
         place.phone = data.get('phone')
@@ -213,7 +226,7 @@ def place_edit(request, objectId):
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
         place.delivery = bool(data.get('delivery'))
-        #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
+        place.location = GeoPoint(latitude = lat, longitude = lng)
         place.save()
 
         photoIdList = []
@@ -395,6 +408,18 @@ def place_add(request):
                 photo.save()
                 photoIdList.append(photo.objectId)
 
+        address = urllib.urlencode({'address': data.get('address')}) 
+        get_address_url = 'http://maps.googleapis.com/maps/api/geocode/json?'+ address +'&sensor=false'
+        location_response = urllib2.urlopen(get_address_url).read()
+        location_data = json.loads(location_response)
+        results = location_data['results']
+        if len(results) > 0:
+            location = results[0]['geometry']['location']
+            lat = location['lat']
+            lng = location['lng']
+        else:
+            lat,lng = 0,0
+
         place = Place()
         place.name = data.get('name')
         place.news = data.get('news')
@@ -407,7 +432,7 @@ def place_add(request):
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
         place.delivery = bool(data.get('delivery'))
-        #place.location = GeoPoint(latitude = float(data.get('latitude')), longitude = float(data.get('longitude')))
+        place.location = GeoPoint(latitude = lat, longitude = lng)
         place.save()
 
         place.addRelation('photos', 'Photo', photoIdList)
