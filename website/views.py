@@ -67,7 +67,7 @@ def place_edit(request, objectId):
     if request.method == "GET":
         category = Category_Place.Query.relation_filter(category__relation=place)._relation_fetch()[0]
 
-        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'delivery':place.delivery, 'tags':tagString})
+        placeForm = Place_Form(initial={'name':place.name,'address':place.address, 'category':category['objectId'], 'phone':place.phone,'open_hour':place.open_hour,'news':place.news,'description':place.description,'has_park':place.has_park,'has_alcohol':place.has_alcohol,'phone_reservation':place.phone_reservation, 'delivery':place.delivery,'has_wifi':place.has_wifi, 'tags':tagString})
 
         mon_open_hour,mon_open_minute,mon_close_hour,mon_close_minute = '','','',''
 
@@ -226,6 +226,7 @@ def place_edit(request, objectId):
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
         place.delivery = bool(data.get('delivery'))
+        place.has_wifi = bool(data.get('has_wifi'))
         place.location = GeoPoint(latitude = lat, longitude = lng)
         place.save()
 
@@ -428,10 +429,11 @@ def place_add(request):
         place.avatar = avatarUrl
         place.open_hour = open_hour
         place.description = data.get('description')
+        place.delivery = bool(data.get('delivery'))
+        place.has_wifi = bool(data.get('has_wifi'))
         place.has_park = bool(data.get('has_park'))
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
-        place.delivery = bool(data.get('delivery'))
         place.location = GeoPoint(latitude = lat, longitude = lng)
         place.save()
 
