@@ -63,31 +63,24 @@ def register(request):
         return render_to_response('account/register.html', {'regForm':RegisterForm()},
             context_instance=RequestContext(request), content_type="application/xhtml+xml")
     else:
-        regForm = RegisterForm(request.POST)
-        if regForm.is_valid():
-            data = regForm.cleaned_data
-            
-            #Parse Signup
-            userObjectId = parse_signup(data)
-
-            user = User.objects.create_user(data['username'].lower(), data['email'], data['password'])
-            user.email, user.is_staff, user.is_active, user.is_superuser = data['email'], True, True, False
-            user_profile = User_Profile(user=user)
-            user_profile.objectId, user_profile.description, user_profile.userType = userObjectId, '', 1 
-            user_profile.save()
-            user.save()
-            from django.contrib.auth import authenticate, login
-            #login() saves the user's ID in the session
-            user = authenticate(username=data['username'], password=data['password'])
-            login(request, user) 
-            return HttpResponseRedirect('/website')
-        else:
-            return render_to_response('account/register.html', {'regForm':regForm},
-                context_instance=RequestContext(request), content_type="application/xhtml+xml")
+        data = request.POST
+        #Parse Signup
+        userObjectId = parse_signup(data)
+        user = User.objects.create_user(data['username'].lower(), data['email'], data['password'])
+        user.email, user.is_staff, user.is_active, user.is_superuser = data['email'], True, True, False
+        user_profile = User_Profile(user=user)
+        user_profile.objectId, user_profile.description, user_profile.userType = userObjectId, '', 1 
+        user_profile.save()
+        user.save()
+        from django.contrib.auth import authenticate, login
+        #login() saves the user's ID in the session
+        user = authenticate(username=data['username'], password=data['password'])
+        login(request, user) 
+        return HttpResponseRedirect('/website')
    
 def parse_signup(data):
     from parse_rest.user import User
-    u = User.signup(data['username'], data['password'], email=data['email'])
+    u = User.signup(data['username'], data['password'], email=data['email'], isMerchant=True)
     return u.objectId
 
 @user_passes_test(lambda u: u.is_authenticated(), login_url='/account/login')
