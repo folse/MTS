@@ -37,13 +37,16 @@ def upload_to_qiniu(request):
 		token = qiniu.upload_token('ts-image1')
 		file_url = data.get('file_url')
 		file_name = data.get('file_name')
-		conn = urllib2.urlopen(file_url)  
-		data = conn.read() 
+		#conn = urllib2.urlopen(file_url)  
+		#data = conn.read() 
+		request = urllib2.Request(file_url)
+		request.add_header('User-Agent','Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6')  
+		opener = urllib2.build_opener()
+		data = opener.open(request).read()
 		ret, info = put_data(token, file_name, data)
 		result = info.text_body
 		result_json = json.loads(result)
-		result_file_name = result_json['key'] 
-
+		result_file_name = result_json['key']
 		jsonData = {'respcd':'0000','file_name':result_file_name}
 	else:
 		jsonData = {'respcd':'0001','msg':'only support POST','api':'login'}
