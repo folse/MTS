@@ -1,13 +1,17 @@
 #coding=utf-8
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+
+import sys
 import json
+import urllib2
 
 from parse_rest.user import User
 from parse_rest.connection import register
 from parse_rest.datatypes import Object, GeoPoint
 
-import sys
+from qiniu import Auth
+from qiniu import put_data
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -25,6 +29,25 @@ class Place(Object):
 	pass
 	# register('MQRrReTdb9c82PETy0BfUoL0ck6xGpwaZqelPWX5','44mp6LNgEmYEfZMYZQz16ncu7oqcnncGFtz762nC')
 	# print 'parse register'
+
+def upload_to_qiniu(request):
+	if request.method == 'POST':
+		data = request.POST
+		qiniu = Auth('StbRobqxbTkicUShT5AlRXqXs6I7LCEZCk-tmLXz', 'RuWkSQA1pXyjI_Rn_W4aRylC6cj0q_sgT3m7Xc39')
+		token = qiniu.upload_token('ts-image1')
+		file_url = data.get('file_url')
+		file_name = data.get('file_name')
+		conn = urllib2.urlopen(file_url)  
+		data = conn.read() 
+		ret, info = put_data(token, file_name, data)
+		result = info.text_body
+		result_json = json.loads(result)
+		result_file_name = result_json['key'] 
+
+		jsonData = {'respcd':'0000','file_name':result_file_name}
+	else:
+		jsonData = {'respcd':'0001','msg':'only support POST','api':'login'}
+	return HttpResponse(json.dumps(jsonData), content_type="application/json")
 
 def login(request):
 	if request.method == 'POST':

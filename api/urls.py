@@ -5,4 +5,5 @@ from api import views
 urlpatterns = patterns('',
 	(r'^add_place$', login_required(views.add_place)),
 	(r'^login$', views.login),
+	(r'^upload_to_qiniu$', views.upload_to_qiniu),
 )
