@@ -435,6 +435,10 @@ def place_add(request):
         place.has_alcohol = bool(data.get('has_alcohol'))
         place.phone_reservation = bool(data.get('phone_reservation'))
         place.location = GeoPoint(latitude = lat, longitude = lng)
+        if len(avatarUrl) > 0:
+            place.has_photo = True;
+        else:
+            place.has_photo = False;
         place.save()
 
         place.addRelation('photos', 'Photo', photoIdList)
