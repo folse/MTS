@@ -175,9 +175,9 @@ def place_edit(request, objectId):
         mon_open_hour = 'Mon ' + data.get('mon_open_hour') + ':' + data.get('mon_open_minute') + '~' + data.get('mon_close_hour') + ':' + data.get('mon_close_minute') + '\n'
         tue_open_hour = 'Tue ' + data.get('tue_open_hour') + ':' + data.get('tue_open_minute') + '~' + data.get('tue_close_hour') + ':' + data.get('tue_close_minute') + '\n'
         wed_open_hour = 'Wed ' + data.get('wed_open_hour') + ':' + data.get('wed_open_minute') + '~' + data.get('wed_close_hour') + ':' + data.get('wed_close_minute') + '\n'
-        thur_open_hour = 'Thur ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '\n'
+        thur_open_hour = 'Thu ' + data.get('thur_open_hour') + ':' + data.get('thur_open_minute') + '~' + data.get('thur_close_hour') + ':' + data.get('thur_close_minute') + '\n'
         fri_open_hour = 'Fri ' + data.get('fri_open_hour') + ':' + data.get('fri_open_minute') + '~' + data.get('fri_close_hour') + ':' + data.get('fri_close_minute') + '\n'
-        sta_open_hour = 'Sta ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
+        sta_open_hour = 'Sat ' + data.get('sta_open_hour') + ':' + data.get('sta_open_minute') + '~' + data.get('sta_close_hour') + ':' + data.get('sta_close_minute') + '\n'
         sun_open_hour = 'Sun ' + data.get('sun_open_hour') + ':' + data.get('sun_open_minute') + '~' + data.get('sun_close_hour') + ':' + data.get('sun_close_minute')
         
         if mon_open_hour.find('0:00~0:00') >= 0:
@@ -190,13 +190,13 @@ def place_edit(request, objectId):
             wed_open_hour = 'Wed Closed\n'
 
         if thur_open_hour.find('0:00~0:00') >= 0:
-            thur_open_hour = 'Thur Closed\n'
+            thur_open_hour = 'Thu Closed\n'
 
         if fri_open_hour.find('0:00~0:00') >= 0:
             fri_open_hour = 'Fri Closed\n'
 
         if sta_open_hour.find('0:00~0:00') >= 0:
-            sta_open_hour = 'Sta Closed\n'
+            sta_open_hour = 'Sat Closed\n'
 
         if sun_open_hour.find('0:00~0:00') >= 0:
             sun_open_hour = 'Sun Closed'

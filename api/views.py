@@ -49,8 +49,9 @@ def upload_to_qiniu(request):
 			result_json = json.loads(result)
 			result_file_name = result_json['key']
 			jsonData = {'respcd':'0000','file_name':result_file_name}
-		except:
-			jsonData = {'respcd':'0002','msg':'download image error'}
+		except Exception, e:
+			print e
+			jsonData = {'respcd':'0002','msg':'upload image error'}
 	else:
 		jsonData = {'respcd':'0001','msg':'only support POST'}
 	return HttpResponse(json.dumps(jsonData), content_type="application/json")
